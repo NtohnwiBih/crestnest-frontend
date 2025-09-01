@@ -10,18 +10,18 @@ interface FooterSection {
   links: FooterLink[];
 }
 
-interface PaymentMethod {
-  label: string;
-  bgColor: string;
-  textColor?: string;
-}
+// interface PaymentMethod {
+//   label: string;
+//   bgColor: string;
+//   textColor?: string;
+// }
 
-interface SocialMedia {
-  icon: string;
-  bgColor: string;
-  hoverColor: string;
-  href: string;
-}
+// interface SocialMedia {
+//   icon: string;
+//   bgColor: string;
+//   hoverColor: string;
+//   href: string;
+// }
 
 const Footer: React.FC = () => {
   const footerSections: FooterSection[] = [
@@ -76,48 +76,48 @@ const Footer: React.FC = () => {
     }
   ];
 
-  const paymentMethods: PaymentMethod[] = [
-    { label: "MC", bgColor: "bg-red-600" },
-    { label: "ID", bgColor: "bg-blue-600" },
-    { label: "✓", bgColor: "bg-green-600" },
-    { label: "V", bgColor: "bg-gray-600" },
-    { label: "V", bgColor: "bg-blue-800" },
-    { label: "A", bgColor: "bg-blue-900" },
-    { label: "WU", bgColor: "bg-yellow-400", textColor: "text-black" },
-    { label: "TT", bgColor: "bg-orange-500" },
-    { label: "VISA", bgColor: "bg-blue-700" },
-    { label: "MC", bgColor: "bg-red-600" },
-    { label: "AMEX", bgColor: "bg-blue-600" },
-    { label: "PP", bgColor: "bg-blue-800" },
-    { label: "PAY", bgColor: "bg-black" },
-    { label: "GP", bgColor: "bg-gray-600" },
-    { label: "DC", bgColor: "bg-orange-600" },
-    { label: "DN", bgColor: "bg-blue-500" },
-    { label: "JCB", bgColor: "bg-green-700" },
-    { label: "UE", bgColor: "bg-blue-600" },
-    { label: "TT", bgColor: "bg-gray-700" }
-  ];
+//   const paymentMethods: PaymentMethod[] = [
+//     { label: "MC", bgColor: "bg-red-600" },
+//     { label: "ID", bgColor: "bg-blue-600" },
+//     { label: "✓", bgColor: "bg-green-600" },
+//     { label: "V", bgColor: "bg-gray-600" },
+//     { label: "V", bgColor: "bg-blue-800" },
+//     { label: "A", bgColor: "bg-blue-900" },
+//     { label: "WU", bgColor: "bg-yellow-400", textColor: "text-black" },
+//     { label: "TT", bgColor: "bg-orange-500" },
+//     { label: "VISA", bgColor: "bg-blue-700" },
+//     { label: "MC", bgColor: "bg-red-600" },
+//     { label: "AMEX", bgColor: "bg-blue-600" },
+//     { label: "PP", bgColor: "bg-blue-800" },
+//     { label: "PAY", bgColor: "bg-black" },
+//     { label: "GP", bgColor: "bg-gray-600" },
+//     { label: "DC", bgColor: "bg-orange-600" },
+//     { label: "DN", bgColor: "bg-blue-500" },
+//     { label: "JCB", bgColor: "bg-green-700" },
+//     { label: "UE", bgColor: "bg-blue-600" },
+//     { label: "TT", bgColor: "bg-gray-700" }
+//   ];
 
-  const socialMediaLinks: SocialMedia[] = [
-    { icon: "f", bgColor: "bg-blue-600", hoverColor: "hover:bg-blue-700", href: "#" },
-    { icon: "in", bgColor: "bg-blue-700", hoverColor: "hover:bg-blue-800", href: "#" },
-    { icon: "t", bgColor: "bg-blue-400", hoverColor: "hover:bg-blue-500", href: "#" },
-    { icon: "ig", bgColor: "bg-pink-500", hoverColor: "hover:bg-pink-600", href: "#" },
-    { icon: "yt", bgColor: "bg-red-600", hoverColor: "hover:bg-red-700", href: "#" },
-    { icon: "tk", bgColor: "bg-black", hoverColor: "hover:bg-gray-800", href: "#" }
-  ];
+//   const socialMediaLinks: SocialMedia[] = [
+//     { icon: "f", bgColor: "bg-blue-600", hoverColor: "hover:bg-blue-700", href: "#" },
+//     { icon: "in", bgColor: "bg-blue-700", hoverColor: "hover:bg-blue-800", href: "#" },
+//     { icon: "t", bgColor: "bg-blue-400", hoverColor: "hover:bg-blue-500", href: "#" },
+//     { icon: "ig", bgColor: "bg-pink-500", hoverColor: "hover:bg-pink-600", href: "#" },
+//     { icon: "yt", bgColor: "bg-red-600", hoverColor: "hover:bg-red-700", href: "#" },
+//     { icon: "tk", bgColor: "bg-black", hoverColor: "hover:bg-gray-800", href: "#" }
+//   ];
 
-  const alibabaServices: FooterLink[] = [
-    { label: "AliExpress", href: "#" },
-    { label: "1688.com", href: "#" },
-    { label: "Tmall Taobao World", href: "#" },
-    { label: "Alipay", href: "#" },
-    { label: "Lazada", href: "#" },
-    { label: "Taobao Global", href: "#" },
-    { label: "TAO", href: "#" },
-    { label: "Trendyol", href: "#" },
-    { label: "Europages", href: "#" }
-  ];
+//   const alibabaServices: FooterLink[] = [
+//     { label: "AliExpress", href: "#" },
+//     { label: "1688.com", href: "#" },
+//     { label: "Tmall Taobao World", href: "#" },
+//     { label: "Alipay", href: "#" },
+//     { label: "Lazada", href: "#" },
+//     { label: "Taobao Global", href: "#" },
+//     { label: "TAO", href: "#" },
+//     { label: "Trendyol", href: "#" },
+//     { label: "Europages", href: "#" }
+//   ];
 
   const legalLinks: FooterLink[] = [
     { label: "Policies and rules", href: "#" },
@@ -149,35 +149,35 @@ const Footer: React.FC = () => {
     </div>
   );
 
-  const renderPaymentMethod = (payment: PaymentMethod, index: number) => (
-    <div
-      key={`${payment.label}-${index}`}
-      className={`w-12 h-6 ${payment.bgColor} rounded flex items-center justify-center`}
-    >
-      <span className={`text-xs font-bold ${payment.textColor || 'text-white'}`}>
-        {payment.label}
-      </span>
-    </div>
-  );
+//   const renderPaymentMethod = (payment: PaymentMethod, index: number) => (
+//     <div
+//       key={`${payment.label}-${index}`}
+//       className={`w-12 h-6 ${payment.bgColor} rounded flex items-center justify-center`}
+//     >
+//       <span className={`text-xs font-bold ${payment.textColor || 'text-white'}`}>
+//         {payment.label}
+//       </span>
+//     </div>
+//   );
 
-  const renderSocialMediaIcon = (social: SocialMedia) => (
-    <a
-      key={social.icon}
-      href={social.href}
-      className={`w-8 h-8 ${social.bgColor} ${social.hoverColor} rounded flex items-center justify-center cursor-pointer transition-colors`}
-    >
-      <span className="text-white text-sm font-bold">{social.icon}</span>
-    </a>
-  );
+//   const renderSocialMediaIcon = (social: SocialMedia) => (
+//     <a
+//       key={social.icon}
+//       href={social.href}
+//       className={`w-8 h-8 ${social.bgColor} ${social.hoverColor} rounded flex items-center justify-center cursor-pointer transition-colors`}
+//     >
+//       <span className="text-white text-sm font-bold">{social.icon}</span>
+//     </a>
+//   );
 
-  const renderAppStoreButton = (store: 'app' | 'google', label: string, subLabel: string) => (
-    <div className="bg-black rounded px-3 py-2 cursor-pointer hover:bg-gray-800 transition-colors">
-      <div className="text-white text-xs">
-        <div className="text-xs opacity-75">{subLabel}</div>
-        <div className="font-bold">{label}</div>
-      </div>
-    </div>
-  );
+//   const renderAppStoreButton = (store: 'app' | 'google', label: string, subLabel: string) => (
+//     <div className="bg-black rounded px-3 py-2 cursor-pointer hover:bg-gray-800 transition-colors">
+//       <div className="text-white text-xs">
+//         <div className="text-xs opacity-75">{subLabel}</div>
+//         <div className="font-bold">{label}</div>
+//       </div>
+//     </div>
+//   );
 
   const renderLinksList = (links: FooterLink[], separator: string = "|") => (
     <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-600 dark:text-gray-400">

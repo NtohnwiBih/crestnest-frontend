@@ -55,15 +55,9 @@ const ProductSlider = ({ title, subtitle, products, itemsPerView = 3 }: ProductS
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex items-center justify-between px-4 py-2">
-        <div>
-          <h2 className="text-sm font-semibold text-foreground">Top Deals</h2>
-          <p className="text-xs text-muted-foreground">Limited time offers you can't miss</p>
-        </div>
-
-        <Button variant="outline" size="sm" className="text-xs h-6 px-2">
-          View More
-        </Button>
+      <div className="flex items-center justify-between p-2">
+         <h3 className="text-sm font-medium text-foreground">{title}</h3>
+         <p className="text-xs text-muted-foreground">{subtitle}</p>
       </div>
       
       <div className="p-2 relative">

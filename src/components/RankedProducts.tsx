@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import ProductCard from "@/components/ProductCard";
 import { Card } from "./ui/card";
 
 interface Product {
@@ -35,7 +34,7 @@ const RankedProductsSection = ({ title, subtitle, products }: RankedProductsSect
       
       <div className="px-4">
         <div className="flex gap-4">
-          {products.slice(0, 3).map((product, index) => (
+          {products.slice(0, 3).map((product) => (
             <Card key={product.id} className="overflow-hidden hover:shadow-sm transition-shadow">
               <div className="relative">
                 <div className="aspect-square bg-gray-100">
