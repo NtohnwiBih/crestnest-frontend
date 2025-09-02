@@ -3,9 +3,10 @@ import { Target, Tag, Sparkles, Package, Beaker, Zap, Building } from "lucide-re
 interface FeaturedDropdownProps {
   isOpen: boolean;
   onClose: () => void;
+  onTopRankingClick: () => void;
 }
 
-const FeaturedDropdown = ({ isOpen, onClose }: FeaturedDropdownProps) => {
+const FeaturedDropdown = ({ isOpen, onClose, onTopRankingClick }: FeaturedDropdownProps) => {
   if (!isOpen) return null;
 
   return (
@@ -18,7 +19,7 @@ const FeaturedDropdown = ({ isOpen, onClose }: FeaturedDropdownProps) => {
         <div className="flex-1 p-8">
           <div className="grid grid-cols-3 gap-8 max-w-4xl">
             {/* Top ranking */}
-            <div className="text-center group cursor-pointer">
+            <div className="text-center group cursor-pointer" onClick={onTopRankingClick}>
               <div className="w-32 h-32 mx-auto mb-4 border border-gray-border rounded-lg flex items-center justify-center group-hover:border-orange-primary transition-colors">
                 <Target className="h-12 w-12 text-text-muted group-hover:text-orange-primary transition-colors" />
               </div>

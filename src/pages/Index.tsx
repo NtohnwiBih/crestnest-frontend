@@ -16,9 +16,11 @@ import product5 from "@/assets/images/product5.jpg";
 import product6 from "@/assets/images/product6.jpg";
 import Footer from "@/layouts/Footer";
 import HeroSection from "@/components/HeroSection";
+import TopRanking from "./TopRanking";
 
 const Index = () => {
   const [showFilters, setShowFilters] = useState(false);
+  const [showTopRanking, setShowTopRanking] = useState(false);
 
   const products = [
     {
@@ -98,6 +100,10 @@ const Index = () => {
     ...products.slice(0, 4).map(p => ({ ...p, id: p.id + 40 }))
   ].slice(0, 10);
 
+  if (showTopRanking) {
+    return <TopRanking />;
+  }
+
   return (
     <div className="min-h-screen bg-background" style={{ transform: 'scale(var(--scale-factor, 1))', transformOrigin: 'top left', width: 'calc(100% / var(--scale-factor, 1))', height: 'calc(100% / var(--scale-factor, 1))' }}>
       <style>{`
@@ -136,7 +142,7 @@ const Index = () => {
         }
       `}</style>
       
-      <Header />
+      <Header onTopRankingClick={() => setShowTopRanking(true)}  />
       {showFilters && <ProductNavigation />}
       
       <div className="flex">
