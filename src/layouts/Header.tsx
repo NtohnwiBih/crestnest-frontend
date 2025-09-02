@@ -89,7 +89,6 @@ const Header = ({ onTopRankingClick }: HeaderProps = {}) => {
           <div className="flex items-center space-x-3">
             <LocationDropdown/>
             <LangCurrencyDropdown/>
-            <span className="text-xs text-text-muted">English-XAF</span>
             <ShoppingCart className="h-4 w-4 text-text-muted" />
             <Dialog>
               <DialogTrigger asChild>
