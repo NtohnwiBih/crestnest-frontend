@@ -1,10 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const FilterSidebar = () => {
   return (
-    <aside className="w-48 bg-background ml-4 border border-gray-border rounded p-3">
+    <aside className="w-60 bg-background ml-4 border border-gray-border rounded p-3">
       <div className="space-y-4">
         <div>
           <h3 className="font-semibold text-foreground mb-2 text-sm">Filters</h3>
@@ -63,20 +64,20 @@ const FilterSidebar = () => {
           <p className="text-xs text-text-muted mb-3">
             Based on a 5-star rating system
           </p>
-          <div className="space-y-2">
+          <RadioGroup className="space-y-2">
             <div className="flex items-center space-x-2">
-              <Checkbox id="4star" />
+              <RadioGroupItem value="4star" id="4star" />
               <label htmlFor="4star" className="text-sm text-foreground">4.0 & up</label>
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox id="45star" />
+              <RadioGroupItem value="45star" id="45star" />
               <label htmlFor="45star" className="text-sm text-foreground">4.5 & up</label>
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox id="5star" />
+              <RadioGroupItem value="5star" id="5star" />
               <label htmlFor="5star" className="text-sm text-foreground">5.0</label>
             </div>
-          </div>
+          </RadioGroup>
         </div>
 
         <Separator />

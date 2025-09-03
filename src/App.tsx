@@ -4,7 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // // Lazy-loaded pages
-const Index = React.lazy(() => import('@/pages/Index'));
+const Index = React.lazy(() => import('@/pages/home/Index'));
+const Search = React.lazy(() => import('@/pages/products/Search'));
+const Details = React.lazy(() => import('@/pages/products/Details'));
 // const Blog = React.lazy(() => import('./views/front/blog/Blog'));
 // const BlogDetails = React.lazy(() => import('./views/front/blog/BlogDetails'));
 // const Login = React.lazy(() => import('./views/auth/Login'));
@@ -42,6 +44,8 @@ const App: React.FC = () => {
         >
           <Routes>
             <Route path="/" element={<Index />} /> 
+            <Route path="/products/search" element={<Search />}  />
+            <Route path="/product/:productSlug" element={<Details />} />
             {/* <Route path="/blog/post/:slug" element={<BlogDetails />} />
             <Route path="/login" element={<Login />} /> */}
             {/*  <Route path="/projects" element={<Projects />} /> */}

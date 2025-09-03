@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
 const categories = [
@@ -15,7 +16,7 @@ const categories = [
           { name: "Running Shorts", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
           { name: "Track Suits", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
           { name: "Athletic Shoes", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
-                   { name: "Athletic Shirts", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
+          { name: "Athletic Shirts", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
           { name: "Sports Bras", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
           { name: "Yoga Pants", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
           { name: "Running Shorts", image: "/lovable-uploads/cbc8e0a0-d93f-4a13-87aa-bdc7c2095873.png" },
@@ -220,6 +221,18 @@ interface MegaDropdownProps {
 
 const Category = ({ isOpen, onClose }: MegaDropdownProps) => {
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const navigate = useNavigate();
+
+  const handleSubcategoryClick = (categoryName: string, subcategoryName: string, productName: string) => {
+    onClose();
+    // Navigate to products page with search params
+    const searchParams = new URLSearchParams({
+      q: productName,
+      category: categoryName,
+      subcategory: subcategoryName
+    });
+    navigate(`/products/search?${searchParams.toString()}`);
+  };
 
   if (!isOpen) return null;
 
@@ -277,20 +290,21 @@ const Category = ({ isOpen, onClose }: MegaDropdownProps) => {
                   <h4 className="text-lg font-medium text-gray-900">
                     {subcategory.name}
                   </h4>
-                  {/* <button className="text-sm text-blue-600 hover:underline flex items-center">
-                    View all
-                    <ChevronRight className="h-3 w-3 ml-1" />
-                  </button> */}
                 </div>
                 
                 {/* Child Categories Grid */}
-                <div className="grid grid-cols-7 gap-4">
+                <div className="grid grid-cols-6 gap-8">
                   {subcategory.children.map((child, index) => (
                     <div 
                       key={child.name}
                       className="text-center group cursor-pointer"
+                      onClick={() => handleSubcategoryClick(
+                        categories[selectedCategory].name,
+                        subcategory.name,
+                        child.name
+                      )}
                     >
-                      <div className="relative w-30 h-30 rounded-full mb-2 overflow-hidden bg-gray-100 aspect-square">
+                      <div className="relative rounded-lg mb-2 overflow-hidden bg-gray-100 aspect-square">
                         <img 
                           src={child.image} 
                           alt={child.name}

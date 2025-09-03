@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
+  slug: string;
   image: string;
   title: string;
   price: string;
@@ -13,10 +15,12 @@ interface ProductCardProps {
   isCompact?: boolean;
 }
 
-const ProductCard = ({ image, title, price, supplier, isVerified, isLive, ranking, isCompact }: ProductCardProps) => {
+const ProductCard = ({ slug, image, title, price, supplier, isVerified, isLive, ranking, isCompact }: ProductCardProps) => {
   if (isCompact) {
     return (
-      <div className="flex space-x-2 p-2 hover:bg-gray-50 rounded-sm cursor-pointer relative">
+      <Link
+       to={`/product/${slug}`}
+       className="flex space-x-2 p-2 hover:bg-gray-50 rounded-sm cursor-pointer relative">
         {ranking && (
           <div className="absolute top-1 left-1 bg-orange-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center z-10">
             {ranking}
@@ -38,7 +42,7 @@ const ProductCard = ({ image, title, price, supplier, isVerified, isLive, rankin
             {supplier}
           </p>
         </div>
-      </div>
+      </Link>
     );
   }
 
@@ -54,31 +58,33 @@ const ProductCard = ({ image, title, price, supplier, isVerified, isLive, rankin
           LIVE
         </Badge>
       )}
-      <div className="aspect-square bg-gray-light">
-        <img 
-          src={image} 
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="p-2">
-        <h3 className="text-xs font-medium text-foreground line-clamp-2 mb-1">
-          {title}
-        </h3>
-        <div className="text-sm font-bold text-foreground mb-1">
-          {price}
+      <Link to={`/product/${slug}`} className="block">
+        <div className="aspect-square bg-gray-light">
+          <img 
+            src={image} 
+            alt={title}
+            className="w-full h-full object-cover"
+          />
         </div>
-        {supplier && (
-          <div className="flex items-center gap-1 mt-1">
-            {isVerified && (
-              <Badge variant="secondary" className="text-xs px-1 py-0">
-                Verified
-              </Badge>
-            )}
-            <span className="text-xs text-text-muted truncate">{supplier}</span>
+        <div className="p-2">
+          <h3 className="text-xs font-medium text-foreground line-clamp-2 mb-1">
+            {title}
+          </h3>
+          <div className="text-sm font-bold text-foreground mb-1">
+            {price}
           </div>
-        )}
-      </div>
+          {supplier && (
+            <div className="flex items-center gap-1 mt-1">
+              {isVerified && (
+                <Badge variant="secondary" className="text-xs px-1 py-0">
+                  Verified
+                </Badge>
+              )}
+              <span className="text-xs text-text-muted truncate">{supplier}</span>
+            </div>
+          )}
+        </div>
+      </Link>
       <div className="px-1 pb-2">
         <div className="flex gap-1">
           <Button size="sm" variant="outline" className="flex-1 text-xs h-6 px-2">

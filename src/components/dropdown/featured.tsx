@@ -4,9 +4,10 @@ interface FeaturedDropdownProps {
   isOpen: boolean;
   onClose: () => void;
   onTopRankingClick: () => void;
+  onNewArrivalsClick: () => void;
 }
 
-const FeaturedDropdown = ({ isOpen, onClose, onTopRankingClick }: FeaturedDropdownProps) => {
+const FeaturedDropdown = ({ isOpen, onClose, onTopRankingClick, onNewArrivalsClick }: FeaturedDropdownProps) => {
   if (!isOpen) return null;
 
   return (
@@ -29,7 +30,7 @@ const FeaturedDropdown = ({ isOpen, onClose, onTopRankingClick }: FeaturedDropdo
             </div>
 
             {/* New arrivals */}
-            <div className="text-center group cursor-pointer">
+            <div className="text-center group cursor-pointer" onClick={onNewArrivalsClick}>
               <div className="w-32 h-32 mx-auto mb-4 border border-gray-border rounded-lg flex items-center justify-center group-hover:border-orange-primary transition-colors relative">
                 <Sparkles className="h-12 w-12 text-text-muted group-hover:text-orange-primary transition-colors" />
                 <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded font-bold">

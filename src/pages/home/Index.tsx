@@ -1,12 +1,8 @@
 import Header from "@/layouts/Header";
-import ProductNavigation from "@/components/ProductNavigation";
-import FilterSidebar from "@/components/FilterSidebar";
 import ProductCard from "@/components/ProductCard";
-import SupplierProfile from "@/components/SupplierProfile";
 import ProductSlider from "@/components/ProductSlider";
 import RankedProductsSection from "@/components/RankedProducts";
 import { Button } from "@/components/ui/button";
-import { LayoutGrid, List } from "lucide-react";
 import { useState } from "react";
 import product1 from "@/assets/images/product1.jpg";
 import product2 from "@/assets/images/product2.jpg";
@@ -16,15 +12,17 @@ import product5 from "@/assets/images/product5.jpg";
 import product6 from "@/assets/images/product6.jpg";
 import Footer from "@/layouts/Footer";
 import HeroSection from "@/components/HeroSection";
-import TopRanking from "./TopRanking";
+import TopRanking from "./sections/TopRanking";
+import NewArrivals from "./sections/NewArrivals";
 
 const Index = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const [showTopRanking, setShowTopRanking] = useState(false);
+  const [currentView, setCurrentView] = useState("main");
 
-  const products = [
+const products = [
     {
       id: 1,
+      slug: "women-sets-fashion-two-piece-satin-sets",
       image: product1,
       title: "Women Sets Fashion Two Piece Satin Sets...",
       price: "FCFA 5,619-6,...",
@@ -33,6 +31,7 @@ const Index = () => {
     },
     {
       id: 2,
+      slug: "sport-fitness-backless-2piece-set-2022",
       image: product2,
       title: "2022 Sport Fitness Backless 2piece Set...",
       price: "FCFA 7,357-8,...",
@@ -41,6 +40,7 @@ const Index = () => {
     },
     {
       id: 3,
+      slug: "summer-outfits-women-t-shirt",
       image: product3,
       title: "Summer Outfits Women T Shirt and...",
       price: "FCFA 2,571-3,...",
@@ -49,6 +49,7 @@ const Index = () => {
     },
     {
       id: 4,
+      slug: "ladies-short-sets-summer-solid-outfits",
       image: product4,
       title: "Ladies Short Sets Summer Solid Outfits...",
       price: "FCFA 4,145-4,...",
@@ -57,6 +58,7 @@ const Index = () => {
     },
     {
       id: 5,
+      slug: "cotton-women-summer-biker-shorts",
       image: product5,
       title: "Cotton Women Summer Biker Shorts...",
       price: "FCFA 2,239-2,...",
@@ -65,6 +67,7 @@ const Index = () => {
     },
     {
       id: 6,
+      slug: "summer-two-piece-outfits-for-women",
       image: product6,
       title: "Summer Two Piece Outfits for Women...",
       price: "FCFA 4,044-4,...",
@@ -100,8 +103,12 @@ const Index = () => {
     ...products.slice(0, 4).map(p => ({ ...p, id: p.id + 40 }))
   ].slice(0, 10);
 
-  if (showTopRanking) {
-    return <TopRanking />;
+  if (currentView === "topRanking") {
+    return <TopRanking/>;
+  }
+
+  if (currentView === "newArrivals") {
+    return <NewArrivals/>;
   }
 
   return (
@@ -142,81 +149,45 @@ const Index = () => {
         }
       `}</style>
       
-      <Header onTopRankingClick={() => setShowTopRanking(true)}  />
-      {showFilters && <ProductNavigation />}
+      <Header 
+       onTopRankingClick={() => setCurrentView("topRanking")}
+       onNewArrivalsClick={() => setCurrentView("newArrivals")}
+      />
       
       <div className="flex">
-        {showFilters && <FilterSidebar />}
         
         <main className="flex-1 p-4">
-          {!showFilters ? (
-            // Homepage layout with sliders
-            <div className="space-y-4">
-              <HeroSection/>
-              <div className="mb-4">
-                <ProductSlider 
-                  title="Top Deals with Discounts" 
-                  subtitle="Limited time offers you can't miss"
-                  products={topDeals}
-                  itemsPerView={6}
-                />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <RankedProductsSection 
-                  title="Top Ranking" 
-                  subtitle="Explore the most demanded & sold products"
-                  products={mostDemandedProducts}
-                />
-                <ProductSlider 
-                  title="Newest Arrivals" 
-                  subtitle="Stay ahead with the lastest offerings"
-                  products={newestArrivals}  />
-              </div>
-              
-              <div className="mb-4">
-                <h2 className="text-sm font-medium text-foreground mb-3">Mixed Categories</h2>
-                <div className="grid grid-cols-6 gap-2">
-                  {products.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      image={product.image}
-                      title={product.title}
-                      price={product.price}
-                      supplier={product.supplier}
-                      isVerified={product.isVerified}
-                      isLive={product.id === 6}
-                    />
-                  ))}
-                </div>
-              </div>
+         {/* Homepage layout with sliders */}
+          <div className="space-y-4">
+            <HeroSection/>
+            <div className="mb-4">
+              <ProductSlider 
+                title="Top Deals with Discounts" 
+                subtitle="Limited time offers you can't miss"
+                products={topDeals}
+                itemsPerView={6}
+              />
             </div>
-          ) : (
-            // Search/category results layout
-            <div>
-              <SupplierProfile />
-              
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs text-text-muted">
-                  Showing 100,000+ products from global suppliers for "women's clothing"
-                </p>
-                <div className="flex items-center space-x-4">
-                  <span className="text-xs text-text-muted">Sort by relevance</span>
-                  <div className="flex space-x-1">
-                    <Button size="sm" variant="outline" className="h-6 w-6 p-0">
-                      <LayoutGrid className="h-3 w-3" />
-                    </Button>
-                    <Button size="sm" variant="outline" className="h-6 w-6 p-0">
-                      <List className="h-3 w-3" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-4 gap-2">
+            
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <RankedProductsSection 
+                title="Top Ranking" 
+                subtitle="Explore the most demanded & sold products"
+                products={mostDemandedProducts}
+              />
+              <ProductSlider 
+                title="Newest Arrivals" 
+                subtitle="Stay ahead with the lastest offerings"
+                products={newestArrivals}  />
+            </div>
+            
+            <div className="mb-4">
+              <h2 className="text-sm font-medium text-foreground mb-3">Mixed Categories</h2>
+              <div className="grid grid-cols-6 gap-2">
                 {products.map((product) => (
                   <ProductCard
                     key={product.id}
+                    slug={product.slug}
                     image={product.image}
                     title={product.title}
                     price={product.price}
@@ -227,7 +198,7 @@ const Index = () => {
                 ))}
               </div>
             </div>
-          )}
+          </div>
           
           <div className="mt-6 text-center">
             <Button 

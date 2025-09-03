@@ -13,12 +13,14 @@ import FeaturedDropdown from "@/components/dropdown/featured";
 import { useState } from "react";
 import LocationDropdown from "@/components/dropdown/LocationDropdown";
 import LangCurrencyDropdown from "@/components/dropdown/LangCurrencyDropdown";
+import logo from "/img/logo-sm.png"
 
 interface HeaderProps {
   onTopRankingClick?: () => void;
+  onNewArrivalsClick?: () => void;
 }
 
-const Header = ({ onTopRankingClick }: HeaderProps = {}) => {
+const Header = ({ onTopRankingClick, onNewArrivalsClick }: HeaderProps = {}) => {
   const [showVerificationModal, setShowVerificationModal] = useState(false);
   const [supplierFormData, setSupplierFormData] = useState({
     firstName: '',
@@ -67,9 +69,16 @@ const Header = ({ onTopRankingClick }: HeaderProps = {}) => {
     <header className="shadow-xs bg-background relative z-10" style={{ transform: 'scale(var(--scale-factor, 1))', transformOrigin: 'top left', width: 'calc(100% / var(--scale-factor, 1))' }}>
       <div className="px-3 py-1 space-y-4">
         <div className="flex items-center justify-between">
+          {/* Logo */}
           <div className="flex items-center">
-            <div className="text-xl font-bold text-teal-primary">
-              <span className="text-gray-900" >Crest</span> <span>Nest</span>
+            <div className="text-xl font-bold flex items-center">
+              <img 
+                src={logo} 
+                alt="Crest Nest Logo" 
+                className="h-4 w-auto mr-2 sm:h-4 md:h-6 lg:h-8" 
+              />
+              <span className="mr-1">Crest</span> 
+              <span className="text-primary">Nest</span>
             </div>
           </div>
 
@@ -426,6 +435,10 @@ const Header = ({ onTopRankingClick }: HeaderProps = {}) => {
         onTopRankingClick={() => {
           setShowFeaturedDropdown(false);
           onTopRankingClick?.();
+        }}
+        onNewArrivalsClick={() => {
+          setShowFeaturedDropdown(false);
+          onNewArrivalsClick?.();
         }}
       />
 
