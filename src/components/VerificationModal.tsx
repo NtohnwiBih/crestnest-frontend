@@ -1,5 +1,7 @@
-import React, { useState, useRef, type ChangeEvent } from "react";
+import React, { useRef, useState, type ChangeEvent } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
+// VerificationModal Component
 interface VerificationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -98,20 +100,15 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-12">
-        <div className="w-full h-full max-w-md mx-auto bg-white relative overflow-hidden rounded-lg">
+      <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
+        <DialogContent className="max-w-md p-0 gap-0 overflow-hidden max-h-[90vh]">
           
           {/* Screen 1: Initial Verification */}
           {currentScreen === 1 && (
             <div className="bg-white min-h-screen relative">
-              <div className="flex items-center justify-between p-4">
-                <h1 className="text-lg font-semibold">Verification</h1>
-                <button onClick={() => setShowCloseModal(true)} className="p-2">
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
+              <DialogHeader>
+                <DialogTitle>Verification</DialogTitle>
+              </DialogHeader>
               
               <div className="px-6 pt-8 pb-6">
                 <div className="flex justify-center mb-8">
@@ -119,9 +116,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                     <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                     </svg>
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center">
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-teal-600 rounded-lg flex items-center justify-center">
                       <div className="w-3 h-3 bg-white rounded-lg flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-green-500 rounded-lg"></div>
+                        <div className="w-1.5 h-1.5 bg-teal-600 rounded-lg"></div>
                       </div>
                     </div>
                   </div>
@@ -172,21 +169,21 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                   </div>
                 </div>
 
-                <div className="mb-2">
+                <div>
                   <button className="text-primary font-medium">
                     How does this work?
                   </button>
                 </div>
               </div>
 
-              <div className="absolute left-0 right-0 p-6 bg-white">
+              <div className="absolute left-0 right-0 px-6 py-2 bg-white">
                 <div className="text-xs text-gray-500 text-center mb-4 leading-relaxed">
                   By clicking <span className="font-medium text-gray-700">Verify with Crest Nest</span>, you consent to Crest Nest sharing a RequestID and a link to your Crest Nest profile with Crest Nest verification, in accordance with <span className="text-primary">LinkedIn's Privacy Policy</span>.
                   <br />
                   <button className="text-primary mt-1">Learn more</button>
                 </div>
                 
-                <button onClick={() => goToScreen(2)} className="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg mb-4 hover:bg-secondary transition-colors">
+                <button onClick={() => goToScreen(2)} className="w-full bg-primary text-white py-2 rounded-lg font-semibold mb-2 hover:bg-secondary transition-colors">
                   Verify with Crest Nest
                 </button>
                 
@@ -200,23 +197,18 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
           {/* Screen 2: Country Selection */}
           {currentScreen === 2 && (
             <div className="bg-white min-h-screen relative">
-              <div className="flex items-center justify-between p-4 border-b border-gray-100">
-                <div className="text-primary font-bold text-lg">Crest Nest</div>
-                <button onClick={() => setShowCloseModal(true)} className="p-2">
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
+              <DialogHeader>
+                <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
+              </DialogHeader>
               
-              <div className="px-6 pt-8">
-                <h2 className="text-2xl font-bold mb-4">Select a country</h2>
-                <p className="text-gray-600 mb-8">
+              <div className="pt-3">
+                <h2 className="text-sm font-semibold mb-2">Select a country</h2>
+                <p className="text-sm text-gray-600 mb-4">
                   This is the country that issued your government ID (e.g., passport, driver's license)
                 </p>
 
                 <div className="mb-8">
-                  <select className="w-full p-4 border border-gray-300 rounded-lg text-lg bg-white appearance-none">
+                  <select className="w-full p-3 border border-gray-300 rounded-lg text-sm bg-white appearance-none">
                     <option>Cameroon</option>
                     <option>United States</option>
                     <option>Canada</option>
@@ -232,7 +224,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       onChange={(e) => setTermsChecked(e.target.checked)}
                       className="w-5 h-5 mt-1 border-2 border-gray-300 rounded" 
                     />
-                    <span className="text-gray-800 leading-relaxed">
+                    <span className="text-sm text-gray-800 leading-relaxed">
                       I agree to <span className="text-primary">Crest Nest's Terms of Use</span>. I acknowledge and accept that Crest Nest will collect and use my personal information in accordance with <span className="text-primary">Crest Nest's Privacy Policy</span>.
                     </span>
                   </label>
@@ -244,22 +236,22 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       onChange={(e) => setBiometricChecked(e.target.checked)}
                       className="w-5 h-5 mt-1 border-2 border-gray-300 rounded" 
                     />
-                    <span className="text-gray-800 leading-relaxed">
+                    <span className="text-sm text-gray-800 leading-relaxed">
                       I consent to Crest Nest collecting, using and utilizing its third-party service providers processing my <span className="text-primary">biometric information</span> to verify my identity and for fraud prevention.
                     </span>
                   </label>
                 </div>
               </div>
 
-              <div className="absolute left-0 right-0 p-6 bg-white">
-                <div className="text-xs text-gray-500 mb-4">
+              <div className="absolute left-0 right-0 px-4 py-8 bg-white">
+                <div className="text-sm text-gray-500 mb-4">
                   Crest Nest deletes facial geometry data immediately after processing, while other data (selfie, ID) is retained for up to 30 days.
                 </div>
                 
                 <button 
                   onClick={() => goToScreen(3)} 
                   disabled={!isContinueEnabled}
-                  className={`w-full py-4 rounded-lg font-semibold text-lg mb-4 transition-colors ${
+                  className={`w-full py-2 rounded-lg font-semibold mb-4 transition-colors ${
                     isContinueEnabled 
                       ? 'bg-primary text-white hover:bg-secondary cursor-pointer'
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -279,16 +271,11 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
           {/* Screen 3: Symbol Check */}
           {currentScreen === 3 && (
             <div className="bg-white min-h-screen relative">
-              <div className="flex items-center justify-between p-4 border-b border-gray-100">
-                <div className="text-primary font-bold text-lg">Crest Nest</div>
-                <button onClick={() => setShowCloseModal(true)} className="p-2">
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
+              <DialogHeader>
+                <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
+              </DialogHeader>
               
-              <div className="px-6 pt-8">
+              <div className="px-2 pt-8">
                 <h2 className="text-2xl font-bold mb-6 leading-tight">
                   Do you see this symbol on the front or back of your ID?
                 </h2>
@@ -321,15 +308,6 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
           {/* Screen 4: Photo Instructions */}
           {currentScreen === 4 && (
             <div className="bg-white min-h-screen relative">
-              <div className="flex items-center justify-between p-4 border-b border-gray-100">
-                <div className="w-6"></div>
-                <div></div>
-                <button onClick={() => setShowCloseModal(true)} className="p-2">
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
               
               <div className="px-6 pt-8">
                 <h2 className="text-2xl font-bold mb-4">Front of Government ID</h2>
@@ -386,22 +364,15 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
           {/* Screen 5: Camera Interface */}
           {currentScreen === 5 && (
             <div className="bg-black min-h-screen relative">
-              <div className="flex items-center justify-between p-4 text-white">
-                <div className="flex space-x-1">
-                  <div className="w-4 h-2 bg-white rounded-sm"></div>
-                  <div className="w-1 h-2 bg-white rounded-sm"></div>
-                </div>
-                <button onClick={() => setShowCloseModal(true)} className="p-2">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
+              <DialogHeader>
+                <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
+              </DialogHeader>
 
               <div 
                 className="flex items-center justify-center px-4"
                 style={{
                   height: 'calc(100vh - 200px)',
+                //   background: 'linear-gradient(135deg, rgba(160, 140, 120, 0.9) 0%, rgba(180, 160, 140, 0.8) 30%, rgba(140, 120, 100, 0.9) 60%, rgba(120, 100, 80, 0.95) 100%)'
                 }}
               >
                 <div className="w-full max-w-sm bg-white/90 rounded-2xl p-6 relative">
@@ -476,14 +447,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
           {/* Screen 6: Scanning Interface */}
           {currentScreen === 6 && (
             <div className="bg-white min-h-screen relative">
-              <div className="flex items-center justify-between p-4 border-b border-gray-100">
-                <div className="text-primary font-bold text-lg">Crest Nest</div>
-                <button onClick={() => setShowCloseModal(true)} className="p-2">
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
+              <DialogHeader>
+                <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
+              </DialogHeader>
               
               <div className="px-6 pt-8">
                 <h2 className="text-2xl font-bold mb-4">Scanning your ID</h2>
@@ -605,9 +571,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
 
                 {/* Scanning Steps */}
                 <div className="space-y-3 mb-8">
-                  <div className={`flex items-center space-x-3 ${scanningStep >= 1 ? 'text-green-600' : scanningStep === 0 ? 'text-primary' : 'text-gray-400'}`}>
+                  <div className={`flex items-center space-x-3 ${scanningStep >= 1 ? 'text-teal-600' : scanningStep === 0 ? 'text-primary' : 'text-gray-400'}`}>
                     <div className={`w-6 h-6 border-2 rounded-lg flex items-center justify-center ${
-                      scanningStep >= 1 ? 'bg-green-500 border-green-500' : scanningStep === 0 ? 'border-primary' : 'border-gray-300'
+                      scanningStep >= 1 ? 'bg-teal-600 border-teal-600' : scanningStep === 0 ? 'border-primary' : 'border-gray-300'
                     }`}>
                       {scanningStep >= 1 ? (
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -620,9 +586,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                     <span>Reading document information</span>
                   </div>
                   
-                  <div className={`flex items-center space-x-3 ${scanningStep >= 2 ? 'text-green-600' : scanningStep === 1 ? 'text-primary' : 'text-gray-400'}`}>
+                  <div className={`flex items-center space-x-3 ${scanningStep >= 2 ? 'text-teal-600' : scanningStep === 1 ? 'text-primary' : 'text-gray-400'}`}>
                     <div className={`w-6 h-6 border-2 rounded-lg flex items-center justify-center ${
-                      scanningStep >= 2 ? 'bg-green-500 border-green-500' : scanningStep === 1 ? 'border-primary' : 'border-gray-300'
+                      scanningStep >= 2 ? 'bg-teal-600 border-teal-600' : scanningStep === 1 ? 'border-primary' : 'border-gray-300'
                     }`}>
                       {scanningStep >= 2 ? (
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -635,9 +601,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                     <span>Verifying security features</span>
                   </div>
                   
-                  <div className={`flex items-center space-x-3 ${scanningStep >= 3 ? 'text-green-600' : scanningStep === 2 ? 'text-primary' : 'text-gray-400'}`}>
+                  <div className={`flex items-center space-x-3 ${scanningStep >= 3 ? 'text-teal-600' : scanningStep === 2 ? 'text-primary' : 'text-gray-400'}`}>
                     <div className={`w-6 h-6 border-2 rounded-lg flex items-center justify-center ${
-                      scanningStep >= 3 ? 'bg-green-500 border-green-500' : scanningStep === 2 ? 'border-primary' : 'border-gray-300'
+                      scanningStep >= 3 ? 'bg-teal-600 border-teal-600' : scanningStep === 2 ? 'border-primary' : 'border-gray-300'
                     }`}>
                       {scanningStep >= 3 ? (
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -664,73 +630,74 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Close Confirmation Modal */}
       {showCloseModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg p-6 mx-4 max-w-sm w-full">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Close Verification?</h3>
-            <p className="text-gray-600 mb-4">Are you sure you want to close the verification flow?</p>
-            <div className="flex space-x-3">
-              <button 
-                onClick={() => setShowCloseModal(false)} 
-                className="flex-1 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button 
-                onClick={() => {
-                  setShowCloseModal(false);
-                  onClose();
-                }} 
-                className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-              >
-                Close
-              </button>
+        <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
+          <DialogContent>
+            <div className="bg-white rounded-lg p-6 w-full">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Close Verification?</h3>
+              <p className="text-gray-600 mb-4">Are you sure you want to close the verification flow?</p>
+              <div className="flex space-x-3">
+                <button 
+                  onClick={() => setShowCloseModal(false)} 
+                  className="flex-1 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={() => {
+                    setShowCloseModal(false);
+                    onClose();
+                  }} 
+                  className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                >
+                  Close
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
+          </DialogContent>
+        </Dialog>
       )}
 
       {/* Upload Progress Modal */}
       {showUploadModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg p-6 mx-4 max-w-sm w-full text-center">
-            <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-primary animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-              </svg>
+        <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
+          <DialogContent>
+            <div className="bg-white rounded-lg p-6  w-full text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Uploading Image</h3>
+              <p className="text-gray-600 mb-4">Please wait while we process your uploaded ID...</p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Uploading Image</h3>
-            <p className="text-gray-600 mb-4">Please wait while we process your uploaded ID...</p>
-          </div>
-        </div>
+          </DialogContent>
+        </Dialog>
       )}
 
       {/* Success Modal */}
       {showSuccessModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60]">
-          <div className="bg-white rounded-lg p-6 mx-4 max-w-sm w-full text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+        <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
+          <DialogContent>
+            <div className="bg-white rounded-lg p-6  w-full text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">ID Verified Successfully!</h3>
+              <p className="text-gray-600 mb-4">Your government ID has been successfully verified and processed.</p>
+              <button 
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  onClose();
+                }} 
+                className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-teal-600 transition-colors"
+              >
+                Complete Verification
+              </button>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">ID Verified Successfully!</h3>
-            <p className="text-gray-600 mb-4">Your government ID has been successfully verified and processed.</p>
-            <button 
-              onClick={() => {
-                setShowSuccessModal(false);
-                onClose();
-              }} 
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
-            >
-              Complete Verification
-            </button>
-          </div>
-        </div>
+          </DialogContent>
+        </Dialog>
       )}
 
       {/* CSS Animations */}
