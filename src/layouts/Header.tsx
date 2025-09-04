@@ -11,8 +11,8 @@ import VerificationModal from "@/components/VerificationModal";
 import CategoryDropdown from "@/components/dropdown/category";
 import FeaturedDropdown from "@/components/dropdown/featured";
 import { useState } from "react";
-import LocationDropdown from "@/components/dropdown/LocationDropdown";
-import LangCurrencyDropdown from "@/components/dropdown/LangCurrencyDropdown";
+import LocationDropdown from "@/components/dropdown/location";
+import LangCurrencyDropdown from "@/components/dropdown/language";
 import logo from "/img/logo-sm.png"
 
 interface HeaderProps {
