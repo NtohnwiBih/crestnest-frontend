@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import logo from "/img/logo-sm.png"
+import logo from "/img/logo-sm-152.png"
 
 // Mock data for multiple shops
 const shops = [
