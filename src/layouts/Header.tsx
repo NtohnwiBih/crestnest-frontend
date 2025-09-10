@@ -13,7 +13,7 @@ import FeaturedDropdown from "@/components/dropdown/featured";
 import { useState } from "react";
 import LocationDropdown from "@/components/dropdown/location";
 import LangCurrencyDropdown from "@/components/dropdown/language";
-import logo from "/img/logo-sm.png"
+import logo from "/img/logo-sm-152.png"
 
 interface HeaderProps {
   onTopRankingClick?: () => void;

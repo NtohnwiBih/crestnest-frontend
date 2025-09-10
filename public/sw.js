@@ -2,8 +2,10 @@ const CACHE_NAME = 'crest-nest-v1';
 const urlsToCache = [
   '/',
   '/manifest.json',
-  '/img/logo.png',
-  '/img/logo.png'
+  '/img/logo-sm-192.png',
+  '/img/logo-sm-152.png',
+  '/img/logo-192.png',
+  '/img/logo-152.png'
   // Remove any duplicate URLs and assets that might not exist
 ];
 
