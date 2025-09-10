@@ -7,6 +7,18 @@
   "background_color": "#c0c0c0",
   "theme_color": "#008080",
   "icons": [
+        {
+      "src": "/img/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/logo-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/img/logo-sm-192.png",
       "sizes": "192x192",
