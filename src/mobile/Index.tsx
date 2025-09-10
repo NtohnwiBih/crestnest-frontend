@@ -300,7 +300,7 @@ const products = [
           <div className="flex items-center gap-3">
             <Download className="w-5 h-5" />
             <div>
-              <p className="text-sm font-medium">Install MobileMart</p>
+              <p className="text-sm font-medium">Install CrestNest</p>
               <p className="text-xs opacity-90">Add to home screen for better experience</p>
             </div>
           </div>
