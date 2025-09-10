@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings } from 'lucide-react';
+import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -12,10 +12,20 @@ import product4 from "@/assets/images/product4.jpg";
 import product5 from "@/assets/images/product5.jpg";
 import product6 from "@/assets/images/product6.jpg";
 import ProductCard from '@/components/ProductCard';
+import { usePWAInstall } from '@/hooks/usePWAInstall';
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
+  const [showInstallBanner, setShowInstallBanner] = useState(true);
+  const { isInstallable, isInstalled, installApp } = usePWAInstall();
+
+  const handleInstallClick = async () => {
+    const success = await installApp();
+    if (success) {
+      setShowInstallBanner(false);
+    }
+  };
 
   const categories = [
     { name: 'Electronics', icon: '📱', color: 'bg-blue-50 text-blue-600' },
@@ -284,6 +294,35 @@ const products = [
 
   return (
     <div className="min-h-screen bg-background relative">
+       {/* PWA Install Banner */}
+      {isInstallable && !isInstalled && showInstallBanner && (
+        <div className="bg-primary text-primary-foreground p-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Download className="w-5 h-5" />
+            <div>
+              <p className="text-sm font-medium">Install MobileMart</p>
+              <p className="text-xs opacity-90">Add to home screen for better experience</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button 
+              size="sm" 
+              variant="secondary" 
+              onClick={handleInstallClick}
+            >
+              Install
+            </Button>
+            <Button 
+              size="icon" 
+              variant="ghost" 
+              className="h-8 w-8 text-primary-foreground"
+              onClick={() => setShowInstallBanner(false)}
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      )}
       {/* Mobile Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
         <div className="flex items-center gap-3 px-4 py-3">
