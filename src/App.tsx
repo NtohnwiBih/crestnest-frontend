@@ -2,9 +2,11 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 
 // // Lazy-loaded pages
 const Index = React.lazy(() => import('@/pages/home/Index'));
+const MobileIndex = React.lazy(() => import('@/mobile/Index'));
 const Search = React.lazy(() => import('@/pages/products/Search'));
 const Details = React.lazy(() => import('@/pages/products/Details'));
 const Dashboard = React.lazy(() => import('@/pages/vendors/Dashboard'));
@@ -36,6 +38,8 @@ const queryClient = new QueryClient({
 });
 
 const App: React.FC = () => {
+  const { isMobile } = useDeviceDetection(); 
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -44,7 +48,10 @@ const App: React.FC = () => {
         // fallback={<div className="pt-3 text-center">Loading...</div>}
         >
           <Routes>
-            <Route path="/" element={<Index />} /> 
+            <Route 
+              path="/" 
+              element={isMobile ? <MobileIndex /> : <Index />} 
+            /> 
             <Route path="/products/search" element={<Search />}  />
             <Route path="/product/:productSlug" element={<Details />} />
             <Route path="/vendor/dashboard" element={<Dashboard />} />
