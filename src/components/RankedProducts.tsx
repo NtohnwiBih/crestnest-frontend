@@ -20,7 +20,7 @@ interface RankedProductsSectionProps {
 
 const RankedProductsSection = ({ title, subtitle, products }: RankedProductsSectionProps) => {
   return (
-    <div className="bg-gray-100 rounded-sm">
+    <div className="border bg-card text-card-foreground rounded-sm">
       <div className="flex items-center justify-between px-4 py-2">
         <div>
           <h2 className="text-sm font-semibold text-foreground">{title}</h2>

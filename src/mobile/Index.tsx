@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download } from 'lucide-react';
+import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -96,6 +96,7 @@ const products = [
   const bottomTabs = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'categories', label: 'Categories', icon: Grid },
+     { id: 'messager', label: 'Messenger', icon: Mail },
     { id: 'deals', label: 'Deals', icon: Tag },
     { id: 'profile', label: 'Profile', icon: User },
   ];
@@ -113,22 +114,6 @@ const products = [
             </Button>
           </div>
           <div className="text-6xl opacity-20">🛍️</div>
-        </div>
-      </div>
-
-      {/* Quick Categories Grid */}
-      <div className="px-4 mt-6">
-        <h3 className="text-lg font-semibold mb-4">Shop by Category</h3>
-        <div className="grid grid-cols-3 gap-3">
-          {categories.map((category) => (
-            <Card
-              key={category.name}
-              className="p-4 flex flex-col items-center justify-center h-20 border-0 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <span className="text-2xl mb-1">{category.icon}</span>
-              <span className="text-xs font-medium text-center">{category.name}</span>
-            </Card>
-          ))}
         </div>
       </div>
 

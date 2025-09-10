@@ -65,7 +65,7 @@
 }
 
 /* Dark mode overrides */
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   @theme {
     --color-background: hsl(222.2 84% 4.9%);
     --color-foreground: hsl(210 40% 98%);
@@ -104,7 +104,7 @@
     --color-sidebar-border: hsl(240 3.7% 15.9%);
     --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
   }
-} */
+}
 
 /* Manual dark mode class override */
 .dark {

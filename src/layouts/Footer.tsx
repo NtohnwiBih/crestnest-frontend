@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
 
   const renderFooterSection = (section: FooterSection) => (
     <div key={section.title}>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+      <h3 className="text-lg font-semibold mb-4">
         {section.title}
       </h3>
       <ul className="space-y-3">
@@ -193,7 +193,7 @@ const Footer: React.FC = () => {
   );
 
   return (
-    <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+    <footer className="border-t border-gray-200 dark:border-gray-700 mt-16">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-5 gap-8">

@@ -51,7 +51,7 @@ const ProductSlider = ({ title, subtitle, products, itemsPerView = 3 }: ProductS
 
   return (
     <div 
-      className="bg-gray-100 rounded-sm relative group"
+      className="border bg-card text-card-foreground rounded-sm relative group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -82,7 +82,7 @@ const ProductSlider = ({ title, subtitle, products, itemsPerView = 3 }: ProductS
         {/* Horizontal card display */}
         <div className="flex gap-4 px-2">
           {visibleProducts.map((product) => (
-            <div key={product.id} className="flex-1 bg-gray-50 rounded-sm p-2 hover:shadow-sm transition-shadow cursor-pointer">
+            <div key={product.id} className="flex-1 border bg-card text-card-foreground rounded-sm p-2 hover:shadow-sm transition-shadow cursor-pointer">
               <div className="aspect-square mb-2">
                 <img 
                   src={product.image} 
