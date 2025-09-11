@@ -123,7 +123,7 @@ const products = [
     { id: 'categories', label: 'Categories', icon: Grid },
      { id: 'messager', label: 'Messenger', icon: Mail },
     { id: 'deals', label: 'Deals', icon: Tag },
-    { id: 'my-nest  ', label: 'My Nest', icon: User },
+    { id: 'my-nest', label: 'My Nest', icon: User },
   ];
 
   const renderHomeContent = () => (
