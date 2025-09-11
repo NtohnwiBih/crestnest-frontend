@@ -45,14 +45,14 @@ const RankedProductsSection = ({ title, subtitle, products }: RankedProductsSect
                   />
                 </div>
               </div>
-              {/* <ProductCard
-                image={product.image}
-                title={product.title}
-                price={product.price}
-                supplier={product.supplier}
-                isVerified={product.isVerified}
-                ranking={index + 1}
-              /> */}
+              <div className="flex-1 min-w-0 p-2">
+                <h4 className="text-xs font-medium text-foreground truncate leading-tight">
+                  {product.supplier}
+                </h4>
+                <p className="text-xs text-orange-primary font-medium mt-1">
+                  {product.title}
+                </p>
+              </div>
             </Card>
           ))}
         </div>
