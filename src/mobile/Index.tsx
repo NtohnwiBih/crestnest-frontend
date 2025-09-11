@@ -156,7 +156,7 @@ const products = [
         <ScrollArea className="w-full whitespace-nowrap">
           <div className="flex w-max space-x-3 px-4">
             {topDeals.map((product) => (
-              <Card key={product.id} className="w-40 p-3  shadow-sm flex-shrink-0">
+              <Card key={product.id} className="w-35 p-1 shadow-sm flex-shrink-0">
                 <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
                   <Badge className="absolute top-2 left-2 bg-destructive text-destructive-foreground px-2 py-0.5 text-xs">
                     -{product.discount}
@@ -168,13 +168,13 @@ const products = [
                   <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
+                  {/* <div className="flex items-center gap-1">
                     <span className="text-xs text-amber-500">⭐</span>
                     <span className="text-xs text-muted-foreground">{product.rating}</span>
                   </div>
                   <Button size="sm" className="h-6 px-2 text-xs rounded-full">
                     Add
-                  </Button>
+                  </Button> */}
                 </div>
               </Card>
             ))}
@@ -197,7 +197,7 @@ const products = [
         <ScrollArea className="w-full whitespace-nowrap">
           <div className="flex w-max space-x-3 px-4">
             {topRanking.map((product) => (
-              <Card key={product.id} className="w-40 p-3  shadow-sm flex-shrink-0">
+              <Card key={product.id} className="w-35 p-1  shadow-sm flex-shrink-0">
                 <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
                   <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold">
                     #{product.rank}
@@ -240,9 +240,9 @@ const products = [
         <ScrollArea className="w-full whitespace-nowrap">
           <div className="flex w-max space-x-3 px-4">
             {newArrivals.map((product) => (
-              <Card key={product.id} className="w-40 p-3  shadow-sm flex-shrink-0">
+              <Card key={product.id} className="w-40 p-1 shadow-sm flex-shrink-0">
                 <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
-                  <Badge className="absolute top-2 left-2 bg-green-500 text-white px-2 py-0.5 text-xs">
+                  <Badge className="absolute top-2 left-2 bg-green-500 px-2 py-0.5 text-xs">
                     NEW
                   </Badge>
                 </div>
@@ -516,7 +516,7 @@ const products = [
         {activeTab === 'home' && renderHomeContent()}
         {activeTab === 'categories' && renderCategoriesContent()}
         {activeTab === 'deals' && renderDealsContent()}
-        {activeTab === 'profile' && renderProfileContent()}
+        {activeTab === 'my-nest' && renderProfileContent()}
       </main>
 
       {/* Bottom Navigation */}
