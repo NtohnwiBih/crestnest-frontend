@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download, Mail } from 'lucide-react';
+import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download, Mail, Star, Clock, TrendingUp, ArrowBigRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -13,8 +13,9 @@ import product5 from "@/assets/images/product5.jpg";
 import product6 from "@/assets/images/product6.jpg";
 import ProductCard from '@/components/ProductCard';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
-const Index = () => {
+const IndexMobile = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
   const [showInstallBanner, setShowInstallBanner] = useState(true);
@@ -93,12 +94,36 @@ const products = [
     }
   ];
 
+  const topDeals = [
+    { id: 1, name: 'Flash Sale Phone', price: '$499', originalPrice: '$799', image: '/placeholder.svg', rating: 4.8, discount: '38%' },
+    { id: 2, name: 'Bluetooth Speaker', price: '$89', originalPrice: '$149', image: '/placeholder.svg', rating: 4.7, discount: '40%' },
+    { id: 3, name: 'Tablet Pro', price: '$599', originalPrice: '$899', image: '/placeholder.svg', rating: 4.6, discount: '33%' },
+    { id: 4, name: 'Gaming Chair', price: '$199', originalPrice: '$299', image: '/placeholder.svg', rating: 4.5, discount: '33%' },
+    { id: 5, name: 'Smart TV 55"', price: '$699', originalPrice: '$999', image: '/placeholder.svg', rating: 4.7, discount: '30%' },
+  ];
+
+  const topRanking = [
+    { id: 1, name: 'iPhone 15 Pro', price: '$1199', originalPrice: '$1299', image: '/placeholder.svg', rating: 4.9, rank: 1 },
+    { id: 2, name: 'MacBook Air M3', price: '$1399', originalPrice: '$1499', image: '/placeholder.svg', rating: 4.8, rank: 2 },
+    { id: 3, name: 'AirPods Pro', price: '$249', originalPrice: '$279', image: '/placeholder.svg', rating: 4.7, rank: 3 },
+    { id: 4, name: 'iPad Air', price: '$699', originalPrice: '$799', image: '/placeholder.svg', rating: 4.6, rank: 4 },
+    { id: 5, name: 'Apple Watch', price: '$399', originalPrice: '$449', image: '/placeholder.svg', rating: 4.8, rank: 5 },
+  ];
+
+  const newArrivals = [
+    { id: 1, name: 'VR Headset Pro', price: '$799', originalPrice: null, image: '/placeholder.svg', rating: 4.5, isNew: true },
+    { id: 2, name: 'Smart Ring', price: '$299', originalPrice: null, image: '/placeholder.svg', rating: 4.3, isNew: true },
+    { id: 3, name: 'Foldable Phone', price: '$1899', originalPrice: null, image: '/placeholder.svg', rating: 4.7, isNew: true },
+    { id: 4, name: 'AI Assistant Hub', price: '$399', originalPrice: null, image: '/placeholder.svg', rating: 4.4, isNew: true },
+    { id: 5, name: 'Solar Power Bank', price: '$89', originalPrice: null, image: '/placeholder.svg', rating: 4.2, isNew: true },
+  ];
+
   const bottomTabs = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'categories', label: 'Categories', icon: Grid },
      { id: 'messager', label: 'Messenger', icon: Mail },
     { id: 'deals', label: 'Deals', icon: Tag },
-    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'my-nest  ', label: 'My Nest', icon: User },
   ];
 
   const renderHomeContent = () => (
@@ -115,6 +140,130 @@ const products = [
           </div>
           <div className="text-6xl opacity-20">🛍️</div>
         </div>
+      </div>
+
+      {/* Top Deals Slider */}
+      <div className="mt-6">
+        <div className="flex items-center justify-between mb-4 px-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <Tag className="h-5 w-5 text-primary" />
+            Top Deals
+          </h3>
+          <Button variant="ghost" size="sm" className="text-primary">
+            <ArrowBigRight className="h-5 w-5" />
+          </Button>
+        </div>
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div className="flex w-max space-x-3 px-4">
+            {topDeals.map((product) => (
+              <Card key={product.id} className="w-40 p-3  shadow-sm flex-shrink-0">
+                <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
+                  <Badge className="absolute top-2 left-2 bg-destructive text-destructive-foreground px-2 py-0.5 text-xs">
+                    -{product.discount}
+                  </Badge>
+                </div>
+                <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
+                <div className="flex items-center gap-1 mb-1">
+                  <span className="text-primary font-bold text-sm">{product.price}</span>
+                  <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs text-amber-500">⭐</span>
+                    <span className="text-xs text-muted-foreground">{product.rating}</span>
+                  </div>
+                  <Button size="sm" className="h-6 px-2 text-xs rounded-full">
+                    Add
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </div>
+
+      {/* Top Ranking */}
+      <div className="mt-6">
+        <div className="flex items-center justify-between mb-4 px-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-primary" />
+            Top Ranking
+          </h3>
+          <Button variant="ghost" size="sm" className="text-primary">
+            <ArrowBigRight className="h-5 w-5" />
+          </Button>
+        </div>
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div className="flex w-max space-x-3 px-4">
+            {topRanking.map((product) => (
+              <Card key={product.id} className="w-40 p-3  shadow-sm flex-shrink-0">
+                <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
+                  <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold">
+                    #{product.rank}
+                  </Badge>
+                </div>
+                <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
+                <div className="flex items-center gap-1 mb-1">
+                  <span className="text-primary font-bold text-sm">{product.price}</span>
+                  {product.originalPrice && (
+                    <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
+                  )}
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <Star className="h-3 w-3 text-amber-500 fill-current" />
+                    <span className="text-xs text-muted-foreground">{product.rating}</span>
+                  </div>
+                  <Button size="sm" className="h-6 px-2 text-xs rounded-full">
+                    Add
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </div>
+
+      {/* New Arrivals */}
+      <div className="mt-6">
+        <div className="flex items-center justify-between mb-4 px-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <Clock className="h-5 w-5 text-primary" />
+            New Arrivals
+          </h3>
+          <Button variant="ghost" size="sm" className="text-primary">
+            <ArrowBigRight className="h-5 w-5" />
+          </Button>
+        </div>
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div className="flex w-max space-x-3 px-4">
+            {newArrivals.map((product) => (
+              <Card key={product.id} className="w-40 p-3  shadow-sm flex-shrink-0">
+                <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
+                  <Badge className="absolute top-2 left-2 bg-green-500 text-white px-2 py-0.5 text-xs">
+                    NEW
+                  </Badge>
+                </div>
+                <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
+                <div className="flex items-center gap-1 mb-1">
+                  <span className="text-primary font-bold text-sm">{product.price}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <Star className="h-3 w-3 text-amber-500 fill-current" />
+                    <span className="text-xs text-muted-foreground">{product.rating}</span>
+                  </div>
+                  <Button size="sm" className="h-6 px-2 text-xs rounded-full">
+                    Add
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
 
       {/* Featured Products */}
@@ -145,7 +294,7 @@ const products = [
       <div className="px-4 mt-6">
         <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
         <div className="grid grid-cols-2 gap-3">
-          <Card className="p-4 border-0 shadow-sm bg-gradient-to-r from-blue-50 to-blue-100">
+          <Card className="p-4  shadow-sm bg-gradient-to-r from-blue-50 to-blue-100">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
                 <Heart className="w-5 h-5 text-white" />
@@ -156,7 +305,7 @@ const products = [
               </div>
             </div>
           </Card>
-          <Card className="p-4 border-0 shadow-sm bg-gradient-to-r from-green-50 to-green-100">
+          <Card className="p-4  shadow-sm bg-gradient-to-r from-green-50 to-green-100">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                 <ShoppingCart className="w-5 h-5 text-white" />
@@ -178,7 +327,7 @@ const products = [
         {categories.map((category) => (
           <Card
             key={category.name}
-            className="p-6 border-0 shadow-sm hover:shadow-md transition-shadow"
+            className="p-6  shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="flex flex-col items-center text-center">
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-3 ${category.color}`}>
@@ -195,7 +344,7 @@ const products = [
 
   const renderDealsContent = () => (
     <div className="p-4 pb-20">
-      <Card className="p-4 mb-4 border-0 bg-gradient-to-r from-red-50 to-red-100">
+      <Card className="p-4 mb-4  bg-gradient-to-r from-red-50 to-red-100">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
             <Tag className="w-6 h-6 text-white" />
@@ -209,7 +358,7 @@ const products = [
       
       <div className="space-y-3">
         {products.map((product) => (
-          <Card key={product.id} className="p-4 border-0 shadow-sm">
+          <Card key={product.id} className="p-4  shadow-sm">
             <div className="flex items-center gap-3">
               <div className="w-16 h-16 bg-muted rounded-xl relative">
                 <Badge className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground px-1.5 py-0.5 text-xs">
@@ -239,7 +388,7 @@ const products = [
 
   const renderProfileContent = () => (
     <div className="p-4 pb-20">
-      <Card className="p-6 mb-6 border-0 shadow-sm">
+      <Card className="p-6 mb-6  shadow-sm">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
             <User className="h-8 w-8 text-primary-foreground" />
@@ -263,7 +412,7 @@ const products = [
           { icon: Bell, label: 'Notifications', count: '3 new' },
           { icon: Settings, label: 'Settings', count: null },
         ].map((item) => (
-          <Card key={item.label} className="border-0 shadow-sm">
+          <Card key={item.label} className=" shadow-sm">
             <Button variant="ghost" className="w-full justify-start p-4 h-auto">
               <item.icon className="h-5 w-5 mr-3 text-muted-foreground" />
               <div className="flex-1 text-left">
@@ -343,7 +492,7 @@ const products = [
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 rounded-full border-0 bg-muted"
+                className="pl-10 pr-4 rounded-full  bg-muted"
               />
             </div>
           </div>
@@ -398,4 +547,4 @@ const products = [
   );
 };
 
-export default Index;
+export default IndexMobile;
