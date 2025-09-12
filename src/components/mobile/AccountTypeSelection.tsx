@@ -19,6 +19,7 @@ const AccountTypeSelection = ({ onBack, onContinue }: AccountTypeSelectionProps)
       icon: ShoppingBag,
       gradient: 'from-blue-50 to-blue-100',
       iconBg: 'bg-blue-500',
+      textColor: 'text-blue-500',
       features: [
         'Browse products from verified vendors',
         'Track orders and delivery status',
@@ -33,6 +34,7 @@ const AccountTypeSelection = ({ onBack, onContinue }: AccountTypeSelectionProps)
       icon: Store,
       gradient: 'from-green-50 to-green-100',
       iconBg: 'bg-green-500',
+      textColor: 'text-green-500',
       features: [
         'List and manage your products',
         'Connect with potential buyers',
@@ -88,7 +90,7 @@ const AccountTypeSelection = ({ onBack, onContinue }: AccountTypeSelectionProps)
                     <Icon className="h-6 w-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold">{account.title}</h3>
+                    <h3 className={`text-lg font-semibold ${account.textColor}`}>{account.title}</h3>
                     <p className="text-sm text-muted-foreground">{account.subtitle}</p>
                   </div>
                   {isSelected && (
@@ -130,7 +132,7 @@ const AccountTypeSelection = ({ onBack, onContinue }: AccountTypeSelectionProps)
         disabled={!selectedType}
         className="w-full rounded-xl h-12 font-medium"
       >
-        Continue as {selectedType === 'buyer' ? 'Buyer' : selectedType === 'vendor' ? 'Vendor' : '...'}
+        Continue as a {selectedType === 'buyer' ? 'Buyer' : selectedType === 'vendor' ? 'Vendor' : '...'}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
 
