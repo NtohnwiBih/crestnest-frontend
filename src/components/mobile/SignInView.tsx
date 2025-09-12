@@ -24,7 +24,7 @@ const SignInView = ({ onBack, onSwitchToSignUp }: SignInViewProps) => {
   return (
     <div className="min-h-screen bg-background p-4">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-8 pt-8">
+      <div className="flex items-center gap-3 mb-8">
         <Button
           variant="ghost"
           size="icon"

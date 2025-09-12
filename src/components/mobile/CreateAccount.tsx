@@ -44,7 +44,7 @@ const CreateAccountForm = ({ accountType, onBack, onSuccess }: CreateAccountForm
   return (
     <div className="min-h-screen bg-background p-4 pb-8">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6 pt-8">
+      <div className="flex items-center gap-3 mb-6">
         <Button
           variant="ghost"
           size="icon"
