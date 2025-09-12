@@ -14,11 +14,16 @@ import product6 from "@/assets/images/product6.jpg";
 import ProductCard from '@/components/ProductCard';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import SignInView from '@/components/mobile/SignInView';
+import AccountTypeSelection from '@/components/mobile/AccountTypeSelection';
+import CreateAccountForm from '@/components/mobile/CreateAccount';
 
 const IndexMobile = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
   const [showInstallBanner, setShowInstallBanner] = useState(true);
+  const [authView, setAuthView] = useState<'none' | 'signin' | 'account-type' | 'signup'>('none');
+  const [selectedAccountType, setSelectedAccountType] = useState<'buyer' | 'vendor' | null>(null);
   const { isInstallable, isInstalled, installApp } = usePWAInstall();
 
   const handleInstallClick = async () => {
@@ -400,8 +405,19 @@ const products = [
         </div>
         
         <div className="mt-4 space-y-2">
-          <Button className="w-full rounded-full">Sign In</Button>
-          <Button variant="outline" className="w-full rounded-full">Create Account</Button>
+          <Button 
+            className="w-full rounded-full"
+            onClick={() => setAuthView('signin')}
+          >
+            Sign In
+          </Button>
+          <Button 
+            variant="outline" 
+            className="w-full rounded-full"
+            onClick={() => setAuthView('account-type')}
+          >
+            Create Account
+          </Button>
         </div>
       </Card>
 
@@ -425,6 +441,43 @@ const products = [
       </div>
     </div>
   );
+
+   // Show auth views when needed
+  if (authView === 'signin') {
+    return (
+      <SignInView 
+        onBack={() => setAuthView('none')}
+        onSwitchToSignUp={() => setAuthView('account-type')}
+      />
+    );
+  }
+
+  if (authView === 'account-type') {
+    return (
+      <AccountTypeSelection 
+        onBack={() => setAuthView('none')}
+        onContinue={(accountType) => {
+          setSelectedAccountType(accountType);
+          setAuthView('signup');
+        }}
+      />
+    );
+  }
+
+  if (authView === 'signup' && selectedAccountType) {
+    return (
+      <CreateAccountForm 
+        accountType={selectedAccountType}
+        onBack={() => setAuthView('account-type')}
+        onSuccess={() => {
+          // Handle successful account creation
+          setAuthView('none');
+          setSelectedAccountType(null);
+          // You can show a success toast here
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background relative">
