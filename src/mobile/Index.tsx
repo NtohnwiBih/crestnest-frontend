@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Search, Menu, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download, Mail, Star, Clock, TrendingUp, ArrowBigRight } from 'lucide-react';
+import { Search, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download, Mail, Star, Clock, TrendingUp, ArrowBigRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+// import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Card } from '@/components/ui/card';
 import product1 from "@/assets/images/product1.jpg";
 import product2 from "@/assets/images/product2.jpg";
@@ -17,12 +17,13 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import SignInView from '@/components/mobile/SignInView';
 import AccountTypeSelection from '@/components/mobile/AccountTypeSelection';
 import CreateAccountForm from '@/components/mobile/CreateAccount';
+import VendorVerification from '@/components/mobile/VendorVerification';
 
 const IndexMobile = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
   const [showInstallBanner, setShowInstallBanner] = useState(true);
-  const [authView, setAuthView] = useState<'none' | 'signin' | 'account-type' | 'signup'>('none');
+  const [authView, setAuthView] = useState<'none' | 'signin' | 'account-type' | 'signup' | 'vendor-verification'>('none');
   const [selectedAccountType, setSelectedAccountType] = useState<'buyer' | 'vendor' | null>(null);
   const { isInstallable, isInstalled, installApp } = usePWAInstall();
 
@@ -139,7 +140,10 @@ const products = [
           <div>
             <h2 className="text-2xl font-bold mb-2">Flash Sale</h2>
             <p className="text-sm opacity-90 mb-4">Up to 70% off on selected items</p>
-            <Button variant="secondary" size="sm" className="rounded-full font-medium px-6">
+            <Button
+             variant="secondary"
+             size="sm" 
+             className="rounded-full font-medium px-6">
               Shop Now
             </Button>
           </div>
@@ -475,6 +479,24 @@ const products = [
           setSelectedAccountType(null);
           // You can show a success toast here
         }}
+        onVendorVerification={() => {
+          // Navigate to vendor verification for vendor accounts
+          setAuthView('vendor-verification');
+        }}
+      />
+    );
+  }
+
+  if (authView === 'vendor-verification') {
+    return (
+      <VendorVerification 
+        onBack={() => setAuthView('signup')}
+        onSuccess={() => {
+          // Handle successful vendor verification
+          setAuthView('none');
+          setSelectedAccountType(null);
+          // You can show a success message or redirect to vendor dashboard
+        }}
       />
     );
   }
@@ -513,7 +535,7 @@ const products = [
       {/* Mobile Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
         <div className="flex items-center gap-3 px-4 py-3">
-          <Sheet>
+          {/* <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" className="rounded-full">
                 <Menu className="h-5 w-5" />
@@ -536,7 +558,7 @@ const products = [
                 </div>
               </div>
             </SheetContent>
-          </Sheet>
+          </Sheet> */}
           
           <div className="flex-1">
             <div className="relative">

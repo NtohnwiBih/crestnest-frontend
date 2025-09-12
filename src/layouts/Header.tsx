@@ -148,7 +148,7 @@ const Header = ({ onTopRankingClick, onNewArrivalsClick }: HeaderProps = {}) => 
                       <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                      <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">Or continue with email</span>
+                      <span className="px-2 bg-background text-gray-500 dark:text-gray-400">Or continue with email</span>
                     </div>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ const Header = ({ onTopRankingClick, onNewArrivalsClick }: HeaderProps = {}) => 
                       <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                      <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">Or create account with email</span>
+                      <span className="px-2 bg-background text-gray-500 dark:text-gray-400">Or create account with email</span>
                     </div>
                   </div>
                 </div>
@@ -317,7 +317,7 @@ const Header = ({ onTopRankingClick, onNewArrivalsClick }: HeaderProps = {}) => 
                     <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">Or continue with email</span>
+                    <span className="px-2 bg-background text-gray-500 dark:text-gray-400">Or continue with email</span>
                   </div>
                 </div>
               </div>

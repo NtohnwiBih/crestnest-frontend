@@ -105,7 +105,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
           
           {/* Screen 1: Initial Verification */}
           {currentScreen === 1 && (
-            <div className="bg-white min-h-screen relative">
+            <div className="bg-background min-h-screen relative">
               <DialogHeader>
                 <DialogTitle>Verification</DialogTitle>
               </DialogHeader>
@@ -117,7 +117,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                     </svg>
                     <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-teal-600 rounded-lg flex items-center justify-center">
-                      <div className="w-3 h-3 bg-white rounded-lg flex items-center justify-center">
+                      <div className="w-3 h-3 bg-background rounded-lg flex items-center justify-center">
                         <div className="w-1.5 h-1.5 bg-teal-600 rounded-lg"></div>
                       </div>
                     </div>
@@ -136,7 +136,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       </svg>
                     </div>
                     <div>
-                      <p className="text-gray-800 leading-relaxed text-sm">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
                         Crest Nest verification provides identity verification services for vendors.
                       </p>
                     </div>
@@ -149,7 +149,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       </svg>
                     </div>
                     <div>
-                      <p className="text-gray-800 leading-relaxed text-sm">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
                         You'll need to provide a valid government ID. We may display the issuing country.
                       </p>
                     </div>
@@ -162,7 +162,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       </svg>
                     </div>
                     <div>
-                      <p className="text-gray-800 leading-relaxed text-sm">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
                         The name on your government ID will need to match your Crest Nest profile.
                       </p>
                     </div>
@@ -176,9 +176,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                 </div>
               </div>
 
-              <div className="absolute left-0 right-0 px-6 py-2 bg-white">
+              <div className="absolute left-0 right-0 px-6 py-2 bg-background">
                 <div className="text-xs text-gray-500 text-center mb-4 leading-relaxed">
-                  By clicking <span className="font-medium text-gray-700">Verify with Crest Nest</span>, you consent to Crest Nest sharing a RequestID and a link to your Crest Nest profile with Crest Nest verification, in accordance with <span className="text-primary">LinkedIn's Privacy Policy</span>.
+                  By clicking <span className="font-medium text-muted-foreground">Verify with Crest Nest</span>, you consent to Crest Nest sharing a RequestID and a link to your Crest Nest profile with Crest Nest verification, in accordance with <span className="text-primary">LinkedIn's Privacy Policy</span>.
                   <br />
                   <button className="text-primary mt-1">Learn more</button>
                 </div>
@@ -196,19 +196,19 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
 
           {/* Screen 2: Country Selection */}
           {currentScreen === 2 && (
-            <div className="bg-white min-h-screen relative">
+            <div className="bg-background min-h-screen relative">
               <DialogHeader>
                 <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
               </DialogHeader>
               
               <div className="pt-3">
-                <h2 className="text-sm font-semibold mb-2">Select a country</h2>
-                <p className="text-sm text-gray-600 mb-4">
+                <h2 className="text-sm font-bold mb-2">Select a country</h2>
+                <p className="text-sm text-muted-foreground mb-4">
                   This is the country that issued your government ID (e.g., passport, driver's license)
                 </p>
 
                 <div className="mb-8">
-                  <select className="w-full p-3 border border-gray-300 rounded-lg text-sm bg-white appearance-none">
+                  <select className="w-full p-3 border border-gray-300 rounded-lg text-sm bg-background appearance-none">
                     <option>Cameroon</option>
                     <option>United States</option>
                     <option>Canada</option>
@@ -224,7 +224,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       onChange={(e) => setTermsChecked(e.target.checked)}
                       className="w-5 h-5 mt-1 border-2 border-gray-300 rounded" 
                     />
-                    <span className="text-sm text-gray-800 leading-relaxed">
+                    <span className="text-sm text-muted-foreground leading-relaxed">
                       I agree to <span className="text-primary">Crest Nest's Terms of Use</span>. I acknowledge and accept that Crest Nest will collect and use my personal information in accordance with <span className="text-primary">Crest Nest's Privacy Policy</span>.
                     </span>
                   </label>
@@ -236,14 +236,14 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                       onChange={(e) => setBiometricChecked(e.target.checked)}
                       className="w-5 h-5 mt-1 border-2 border-gray-300 rounded" 
                     />
-                    <span className="text-sm text-gray-800 leading-relaxed">
+                    <span className="text-sm text-muted-foreground leading-relaxed">
                       I consent to Crest Nest collecting, using and utilizing its third-party service providers processing my <span className="text-primary">biometric information</span> to verify my identity and for fraud prevention.
                     </span>
                   </label>
                 </div>
               </div>
 
-              <div className="absolute left-0 right-0 px-4 py-8 bg-white">
+              <div className="absolute left-0 right-0 px-4 py-8 bg-background">
                 <div className="text-sm text-gray-500 mb-4">
                   Crest Nest deletes facial geometry data immediately after processing, while other data (selfie, ID) is retained for up to 30 days.
                 </div>
@@ -260,9 +260,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                   Continue
                 </button>
 
-                <div className="flex justify-center items-center space-x-2 text-xs text-gray-500">
-                  <span>SECURED WITH</span>
-                  <span className="font-bold text-gray-700">Crest Nest</span>
+                <div className="flex justify-center items-center space-x-1 text-xs text-muted-foreground">
+                  <span>Secured with</span>
+                  <span className="font-bold text-primary">Crest Nest</span>
                 </div>
               </div>
             </div>
@@ -270,7 +270,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
 
           {/* Screen 3: Symbol Check */}
           {currentScreen === 3 && (
-            <div className="bg-white min-h-screen relative">
+            <div className="bg-background min-h-screen relative">
               <DialogHeader>
                 <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
               </DialogHeader>
@@ -293,7 +293,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                 </div>
               </div>
 
-              <div className="absolute left-0 right-0 p-6 bg-white">
+              <div className="absolute left-0 right-0 p-6 bg-background">
                 <button onClick={() => goToScreen(4)} className="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg mb-4 hover:bg-secondary transition-colors">
                   Yes, continue
                 </button>
@@ -307,7 +307,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
 
           {/* Screen 4: Photo Instructions */}
           {currentScreen === 4 && (
-            <div className="bg-white min-h-screen relative">
+            <div className="bg-background min-h-screen relative">
               
               <div className="px-6 pt-8">
                 <h2 className="text-2xl font-bold mb-4">Front of Government ID</h2>
@@ -336,7 +336,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                 </div>
               </div>
 
-              <div className="absolute left-0 right-0 p-6 bg-white">
+              <div className="absolute left-0 right-0 p-6 bg-background">
                 <button onClick={() => goToScreen(5)} className="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg mb-4 hover:bg-secondary transition-colors flex items-center justify-center space-x-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
@@ -375,9 +375,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                 //   background: 'linear-gradient(135deg, rgba(160, 140, 120, 0.9) 0%, rgba(180, 160, 140, 0.8) 30%, rgba(140, 120, 100, 0.9) 60%, rgba(120, 100, 80, 0.95) 100%)'
                 }}
               >
-                <div className="w-full max-w-sm bg-white/90 rounded-2xl p-6 relative">
+                <div className="w-full max-w-sm bg-background/90 rounded-2xl p-6 relative">
                   <div className="aspect-[3/2] bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                    <div className="relative z-10 w-16 h-16 bg-white rounded-lg flex items-center justify-center">
+                    <div className="relative z-10 w-16 h-16 bg-background rounded-lg flex items-center justify-center">
                       <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                       </svg>
@@ -385,14 +385,14 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                     <div className="absolute bottom-4 left-4 right-4">
                       <div className="space-y-1">
                         <div className="flex space-x-1">
-                          <div className="flex-1 h-1 bg-white/60"></div>
-                          <div className="flex-1 h-1 bg-white/60"></div>
-                          <div className="flex-1 h-1 bg-white/60"></div>
+                          <div className="flex-1 h-1 bg-background/60"></div>
+                          <div className="flex-1 h-1 bg-background/60"></div>
+                          <div className="flex-1 h-1 bg-background/60"></div>
                         </div>
                         <div className="flex space-x-1">
-                          <div className="flex-1 h-1 bg-white/60"></div>
-                          <div className="flex-1 h-1 bg-white/60"></div>
-                          <div className="flex-1 h-1 bg-white/60"></div>
+                          <div className="flex-1 h-1 bg-background/60"></div>
+                          <div className="flex-1 h-1 bg-background/60"></div>
+                          <div className="flex-1 h-1 bg-background/60"></div>
                         </div>
                       </div>
                     </div>
@@ -429,7 +429,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
 
               <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-8">
                 <button onClick={capturePhoto} className="w-16 h-16 border-4 border-white rounded-lg flex items-center justify-center">
-                  <div className="w-12 h-12 bg-white rounded-lg"></div>
+                  <div className="w-12 h-12 bg-background rounded-lg"></div>
                 </button>
                 <div className="w-8 h-8 flex items-center justify-center">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -439,14 +439,14 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
               </div>
 
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                <div className="w-32 h-1 bg-white/30 rounded-lg"></div>
+                <div className="w-32 h-1 bg-background/30 rounded-lg"></div>
               </div>
             </div>
           )}
 
           {/* Screen 6: Scanning Interface */}
           {currentScreen === 6 && (
-            <div className="bg-white min-h-screen relative">
+            <div className="bg-background min-h-screen relative">
               <DialogHeader>
                 <DialogTitle className='pb-4'>Crest Nest</DialogTitle>
               </DialogHeader>
@@ -470,7 +470,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                     >
                       {!uploadedImageUrl && (
                         <>
-                          <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
+                          <div className="w-16 h-16 bg-background rounded-lg flex items-center justify-center">
                             <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
@@ -478,14 +478,14 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                           <div className="absolute bottom-4 left-4 right-4">
                             <div className="space-y-1">
                               <div className="flex space-x-1">
-                                <div className="flex-1 h-1 bg-white/60"></div>
-                                <div className="flex-1 h-1 bg-white/60"></div>
-                                <div className="flex-1 h-1 bg-white/60"></div>
+                                <div className="flex-1 h-1 bg-background/60"></div>
+                                <div className="flex-1 h-1 bg-background/60"></div>
+                                <div className="flex-1 h-1 bg-background/60"></div>
                               </div>
                               <div className="flex space-x-1">
-                                <div className="flex-1 h-1 bg-white/60"></div>
-                                <div className="flex-1 h-1 bg-white/60"></div>
-                                <div className="flex-1 h-1 bg-white/60"></div>
+                                <div className="flex-1 h-1 bg-background/60"></div>
+                                <div className="flex-1 h-1 bg-background/60"></div>
+                                <div className="flex-1 h-1 bg-background/60"></div>
                               </div>
                             </div>
                           </div>
@@ -618,13 +618,13 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
                 </div>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-100">
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-background border-t border-gray-100">
                 <div className="text-xs text-gray-500 text-center mb-4">
                   This process typically takes 10-30 seconds. Please do not close this window.
                 </div>
 
                 <div className="flex justify-center items-center space-x-2 text-xs text-gray-500">
-                  <span>SECURED WITH</span>
+                  <span>Secured with</span>
                   <span className="font-bold text-gray-700">Crest Nest</span>
                 </div>
               </div>
@@ -637,7 +637,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
       {showCloseModal && (
         <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
           <DialogContent>
-            <div className="bg-white rounded-lg p-6 w-full">
+            <div className="bg-background rounded-lg p-6 w-full">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Close Verification?</h3>
               <p className="text-gray-600 mb-4">Are you sure you want to close the verification flow?</p>
               <div className="flex space-x-3">
@@ -666,7 +666,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
       {showUploadModal && (
         <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
           <DialogContent>
-            <div className="bg-white rounded-lg p-6  w-full text-center">
+            <div className="bg-background rounded-lg p-6  w-full text-center">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Uploading Image</h3>
               <p className="text-gray-600 mb-4">Please wait while we process your uploaded ID...</p>
             </div>
@@ -678,7 +678,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose }
       {showSuccessModal && (
         <Dialog open={isOpen} onOpenChange={(open) => !open && setShowCloseModal(true)}>
           <DialogContent>
-            <div className="bg-white rounded-lg p-6  w-full text-center">
+            <div className="bg-background rounded-lg p-6  w-full text-center">
               <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>

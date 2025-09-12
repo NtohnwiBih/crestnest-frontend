@@ -10,9 +10,10 @@ interface CreateAccountFormProps {
   accountType: 'buyer' | 'vendor';
   onBack: () => void;
   onSuccess: () => void;
+  onVendorVerification: () => void;
 }
 
-const CreateAccountForm = ({ accountType, onBack, onSuccess }: CreateAccountFormProps) => {
+const CreateAccountForm = ({ accountType, onBack, onSuccess, onVendorVerification }: CreateAccountFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -34,9 +35,23 @@ const CreateAccountForm = ({ accountType, onBack, onSuccess }: CreateAccountForm
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+     // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
     // Handle account creation logic here
     console.log('Create account:', { accountType, ...formData });
-    onSuccess();
+    
+    // For vendor accounts, navigate to verification
+    if (accountType === 'vendor') {
+      onVendorVerification();
+    } else {
+      // For buyer accounts, complete the process
+      onSuccess();
+    }
   };
 
   const isVendor = accountType === 'vendor';
@@ -63,7 +78,7 @@ const CreateAccountForm = ({ accountType, onBack, onSuccess }: CreateAccountForm
             {isVendor ? '🏪' : '🛍️'}
           </div>
           <div>
-            <h3 className="font-semibold">{isVendor ? 'Vendor Account' : 'Buyer Account'}</h3>
+            <h3 className={`font-semibold ${isVendor ? 'text-green-500' : 'text-blue-500'}`}>{isVendor ? 'Vendor Account' : 'Buyer Account'}</h3>
             <p className="text-sm text-muted-foreground">
               {isVendor ? 'Sell your products to customers' : 'Shop from thousands of products'}
             </p>
