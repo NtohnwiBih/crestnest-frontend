@@ -18,6 +18,7 @@ import SignInView from '@/components/mobile/SignInView';
 import AccountTypeSelection from '@/components/mobile/AccountTypeSelection';
 import CreateAccountForm from '@/components/mobile/CreateAccount';
 import VendorVerification from '@/components/mobile/VendorVerification';
+import MessengerView from '@/components/mobile/MessengerView';
 
 const IndexMobile = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -590,6 +591,7 @@ const products = [
       <main className="min-h-screen pb-16">
         {activeTab === 'home' && renderHomeContent()}
         {activeTab === 'categories' && renderCategoriesContent()}
+        {activeTab === 'messenger' && <MessengerView />}
         {activeTab === 'deals' && renderDealsContent()}
         {activeTab === 'my-nest' && renderProfileContent()}
       </main>
