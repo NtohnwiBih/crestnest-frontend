@@ -126,7 +126,7 @@ const ChatListView = ({ onChatSelect }: ChatListViewProps) => {
                       {chat.isTyping ? (
                         <span className="text-primary italic">Typing...</span>
                       ) : (
-                        chat.lastMessage
+                        <span>{`${chat.lastMessage.substring(0, 40)}...`}</span>
                       )}
                     </p>
                     
