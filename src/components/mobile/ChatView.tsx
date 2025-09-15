@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Send, MoreVertical, Phone, Video, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -27,6 +27,7 @@ interface ChatViewProps {
 
 const ChatView = ({ chatId, onBack }: ChatViewProps) => {
   const [messageText, setMessageText] = useState('');
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   // Mock data - in real app this would come from props or API
   const chat: Chat = {
@@ -40,32 +41,96 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
     {
       id: '1',
       text: 'Hi! I\'m interested in the iPhone 15 Pro. Is it still available?',
-      timestamp: '10:30 AM',
+      timestamp: '9:15 AM',
       isSent: true,
       isRead: true,
     },
     {
       id: '2',
       text: 'Yes, we have it in stock! Which color would you prefer?',
-      timestamp: '10:32 AM',
+      timestamp: '9:17 AM',
       isSent: false,
       isRead: true,
     },
     {
       id: '3',
       text: 'I\'d like the Natural Titanium color please',
-      timestamp: '10:33 AM',
+      timestamp: '9:18 AM',
       isSent: true,
       isRead: true,
     },
     {
       id: '4',
       text: 'Perfect! I\'ll send you the product link. The price is $1199 with free shipping.',
-      timestamp: '10:35 AM',
+      timestamp: '9:20 AM',
+      isSent: false,
+      isRead: true,
+    },
+    {
+      id: '5',
+      text: 'That sounds great! Can you also tell me about the warranty?',
+      timestamp: '9:22 AM',
+      isSent: true,
+      isRead: true,
+    },
+    {
+      id: '6',
+      text: 'It comes with 1 year Apple warranty. We also offer extended warranty for 2 years at $199.',
+      timestamp: '9:25 AM',
+      isSent: false,
+      isRead: true,
+    },
+    {
+      id: '7',
+      text: 'I\'ll take the extended warranty too. What\'s the total?',
+      timestamp: '9:26 AM',
+      isSent: true,
+      isRead: true,
+    },
+    {
+      id: '8',
+      text: 'Total would be $1398 including the extended warranty. Shall I prepare the invoice?',
+      timestamp: '9:28 AM',
+      isSent: false,
+      isRead: true,
+    },
+    {
+      id: '9',
+      text: 'Yes please! And what are the payment options?',
+      timestamp: '9:30 AM',
+      isSent: true,
+      isRead: true,
+    },
+    {
+      id: '10',
+      text: 'We accept credit cards, PayPal, Apple Pay, and bank transfer. Which would you prefer?',
+      timestamp: '9:32 AM',
+      isSent: false,
+      isRead: true,
+    },
+    {
+      id: '11',
+      text: 'I\'ll pay with Apple Pay. How long is the delivery?',
+      timestamp: '9:33 AM',
+      isSent: true,
+      isRead: true,
+    },
+    {
+      id: '12',
+      text: 'Great choice! Free delivery takes 2-3 business days. Express delivery is available for $15 and arrives next day.',
+      timestamp: '9:35 AM',
       isSent: false,
       isRead: true,
     },
   ];
+
+  // Auto-scroll to bottom when component mounts
+  useEffect(() => {
+    const scrollContainer = scrollAreaRef.current?.querySelector('[data-radix-scroll-area-viewport]');
+    if (scrollContainer) {
+      scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    }
+  }, []);
 
   const handleSendMessage = () => {
     if (messageText.trim()) {
@@ -78,7 +143,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Chat Header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b bg-background/95 backdrop-blur-sm">
+      <div className="sticky top-0 z-10 flex items-center gap-3 px-4 py-3 border-b bg-background/95 backdrop-blur-sm">
         <Button
           variant="ghost"
           size="sm"
@@ -114,7 +179,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
       </div>
 
       {/* Messages */}
-      <ScrollArea className="flex-1 px-4">
+      <ScrollArea ref={scrollAreaRef} className="flex-1 px-4">
         <div className="space-y-4 py-4">
           {messages.map((message) => (
             <div
