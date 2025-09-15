@@ -18,7 +18,8 @@ import SignInView from '@/components/mobile/SignInView';
 import AccountTypeSelection from '@/components/mobile/AccountTypeSelection';
 import CreateAccountForm from '@/components/mobile/CreateAccount';
 import VendorVerification from '@/components/mobile/VendorVerification';
-import MessengerView from '@/components/mobile/MessengerView';
+import ChatListView from '@/components/mobile/ChatListView';
+import ChatView from '@/components/mobile/ChatView';
 
 const IndexMobile = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -26,6 +27,7 @@ const IndexMobile = () => {
   const [showInstallBanner, setShowInstallBanner] = useState(true);
   const [authView, setAuthView] = useState<'none' | 'signin' | 'account-type' | 'signup' | 'vendor-verification'>('none');
   const [selectedAccountType, setSelectedAccountType] = useState<'buyer' | 'vendor' | null>(null);
+   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const { isInstallable, isInstalled, installApp } = usePWAInstall();
 
   const handleInstallClick = async () => {
@@ -124,6 +126,14 @@ const products = [
     { id: 4, name: 'AI Assistant Hub', price: '$399', originalPrice: null, image: '/placeholder.svg', rating: 4.4, isNew: true },
     { id: 5, name: 'Solar Power Bank', price: '$89', originalPrice: null, image: '/placeholder.svg', rating: 4.2, isNew: true },
   ];
+
+  const handleChatSelect = (chatId: string) => {
+    setSelectedChatId(chatId);
+  };
+
+  const handleBackToChats = () => {
+    setSelectedChatId(null);
+  };
 
   const bottomTabs = [
     { id: 'home', label: 'Home', icon: Home },
@@ -502,6 +512,10 @@ const products = [
     );
   }
 
+  if (selectedChatId) {
+    return <ChatView chatId={selectedChatId} onBack={handleBackToChats} />;
+  }
+
   return (
     <div className="min-h-screen bg-background relative">
        {/* PWA Install Banner */}
@@ -591,7 +605,7 @@ const products = [
       <main className="min-h-screen pb-16">
         {activeTab === 'home' && renderHomeContent()}
         {activeTab === 'categories' && renderCategoriesContent()}
-        {activeTab === 'messenger' && <MessengerView />}
+        {activeTab === 'messenger' && <ChatListView onChatSelect={handleChatSelect} />}
         {activeTab === 'deals' && renderDealsContent()}
         {activeTab === 'my-nest' && renderProfileContent()}
       </main>
