@@ -128,7 +128,7 @@ const products = [
   const bottomTabs = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'categories', label: 'Categories', icon: Grid },
-     { id: 'messager', label: 'Messenger', icon: Mail },
+    { id: 'messenger', label: 'Messenger', icon: Mail },
     { id: 'deals', label: 'Deals', icon: Tag },
     { id: 'my-nest', label: 'My Nest', icon: User },
   ];
