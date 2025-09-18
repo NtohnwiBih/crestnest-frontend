@@ -9,7 +9,9 @@ const Index = React.lazy(() => import('@/pages/home/Index'));
 const MobileIndex = React.lazy(() => import('@/mobile/Index'));
 const Search = React.lazy(() => import('@/pages/products/Search'));
 const Details = React.lazy(() => import('@/pages/products/Details'));
-const Dashboard = React.lazy(() => import('@/pages/vendors/Dashboard'));
+const MobileDetail = React.lazy(() => import('@/pages/products/Details'));
+const Dashboard = React.lazy(() => import('@/mobile/products/ProductDetail'));
+const ThemeSettings = React.lazy(() => import('@/mobile/ThemeSettings'));
 // const Blog = React.lazy(() => import('./views/front/blog/Blog'));
 // const BlogDetails = React.lazy(() => import('./views/front/blog/BlogDetails'));
 // const Login = React.lazy(() => import('./views/auth/Login'));
@@ -53,8 +55,12 @@ const App: React.FC = () => {
               element={isMobile ? <MobileIndex /> : <Index />} 
             /> 
             <Route path="/products/search" element={<Search />}  />
-            <Route path="/product/:productSlug" element={<Details />} />
+            <Route 
+              path="/product/:productSlug"
+              element={isMobile ? <MobileDetail /> : <Details />} 
+            />
             <Route path="/vendor/dashboard" element={<Dashboard />} />
+            <Route path="/theme-settings" element={<ThemeSettings />} />
             {/* <Route path="/blog/post/:slug" element={<BlogDetails />} />
             <Route path="/login" element={<Login />} /> */}
             {/*  <Route path="/projects" element={<Projects />} /> */}

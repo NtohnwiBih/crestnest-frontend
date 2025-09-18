@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   slug: string;
@@ -15,11 +14,10 @@ interface ProductCardProps {
   isCompact?: boolean;
 }
 
-const ProductCard = ({ slug, image, title, price, supplier, isVerified, isLive, ranking, isCompact }: ProductCardProps) => {
+const ProductCard = ({ image, title, price, supplier, isVerified, isLive, ranking, isCompact }: ProductCardProps) => {
   if (isCompact) {
     return (
-      <Link
-       to={`/product/${slug}`}
+      <div
        className="flex space-x-2 p-2 hover:bg-gray-50 rounded-sm cursor-pointer relative">
         {ranking && (
           <div className="absolute top-1 left-1 bg-orange-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center z-10">
@@ -42,7 +40,7 @@ const ProductCard = ({ slug, image, title, price, supplier, isVerified, isLive, 
             {supplier}
           </p>
         </div>
-      </Link>
+      </div>
     );
   }
 
@@ -58,7 +56,7 @@ const ProductCard = ({ slug, image, title, price, supplier, isVerified, isLive, 
           LIVE
         </Badge>
       )}
-      <Link to={`/product/${slug}`} className="block">
+      <div className="block">
         <div className="aspect-square bg-gray-light">
           <img 
             src={image} 
@@ -84,7 +82,7 @@ const ProductCard = ({ slug, image, title, price, supplier, isVerified, isLive, 
             </div>
           )}
         </div>
-      </Link>
+      </div>
       <div className="px-1 pb-2">
         <div className="flex gap-1">
           <Button size="sm" variant="outline" className="flex-1 text-xs h-6 px-2">

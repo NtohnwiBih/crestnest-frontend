@@ -20,8 +20,10 @@ import CreateAccountForm from '@/components/mobile/CreateAccount';
 import VendorVerification from '@/components/mobile/VendorVerification';
 import ChatListView from '@/components/mobile/ChatListView';
 import ChatView from '@/components/mobile/ChatView';
+import { useNavigate } from 'react-router-dom';
 
 const IndexMobile = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
   const [showInstallBanner, setShowInstallBanner] = useState(true);
@@ -296,6 +298,7 @@ const products = [
         </div>
         <div className="grid grid-cols-2 gap-3">
             {products.map((product) => (
+              <div key={product.id} onClick={() => navigate(`/product/${product.slug}`)}>
                 <ProductCard
                 key={product.id}
                 slug={product.slug}
@@ -306,6 +309,7 @@ const products = [
                 isVerified={product.isVerified}
                 isLive={product.id === 6}
                 />
+              </div>
             ))}
         </div>
       </div>
@@ -438,10 +442,10 @@ const products = [
 
       <div className="space-y-2">
         {[
-          { icon: Heart, label: 'My Wishlist', count: '12 items' },
-          { icon: ShoppingCart, label: 'Order History', count: '5 orders' },
-          { icon: Bell, label: 'Notifications', count: '3 new' },
-          { icon: Settings, label: 'Settings', count: null },
+          { icon: Heart, label: 'My Wishlist', count: '12 items', onClick: () => {} },
+          { icon: ShoppingCart, label: 'Order History', count: '5 orders', onClick: () => navigate('/cart') },
+          { icon: Bell, label: 'Notifications', count: '3 new', onClick: () => {} },
+          { icon: Settings, label: 'Settings', count: null, onClick: () => navigate('/theme-settings') },
         ].map((item) => (
           <Card key={item.label} className=" shadow-sm">
             <Button variant="ghost" className="w-full justify-start p-4 h-auto">
