@@ -9,7 +9,7 @@ const Index = React.lazy(() => import('@/pages/home/Index'));
 const MobileIndex = React.lazy(() => import('@/mobile/Index'));
 const Search = React.lazy(() => import('@/pages/products/Search'));
 const Details = React.lazy(() => import('@/pages/products/Details'));
-const MobileDetail = React.lazy(() => import('@/pages/products/Details'));
+const MobileDetail = React.lazy(() => import('@/mobile/products/ProductDetail'));
 const MobileCart = React.lazy(() => import('@/mobile/products/Cart'));
 const Dashboard = React.lazy(() => import('@/mobile/products/ProductDetail'));
 const ThemeSettings = React.lazy(() => import('@/mobile/ThemeSettings'));
