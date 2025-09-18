@@ -448,7 +448,11 @@ const products = [
           { icon: Settings, label: 'Settings', count: null, onClick: () => navigate('/theme-settings') },
         ].map((item) => (
           <Card key={item.label} className=" shadow-sm">
-            <Button variant="ghost" className="w-full justify-start p-4 h-auto">
+            <Button
+             variant="ghost"
+             className="w-full justify-start p-4 h-auto"
+             onClick={item.onClick}
+            >
               <item.icon className="h-5 w-5 mr-3 text-muted-foreground" />
               <div className="flex-1 text-left">
                 <p className="font-medium">{item.label}</p>

@@ -10,6 +10,7 @@ const MobileIndex = React.lazy(() => import('@/mobile/Index'));
 const Search = React.lazy(() => import('@/pages/products/Search'));
 const Details = React.lazy(() => import('@/pages/products/Details'));
 const MobileDetail = React.lazy(() => import('@/pages/products/Details'));
+const MobileCart = React.lazy(() => import('@/mobile/products/Cart'));
 const Dashboard = React.lazy(() => import('@/mobile/products/ProductDetail'));
 const ThemeSettings = React.lazy(() => import('@/mobile/ThemeSettings'));
 // const Blog = React.lazy(() => import('./views/front/blog/Blog'));
@@ -59,6 +60,7 @@ const App: React.FC = () => {
               path="/product/:productSlug"
               element={isMobile ? <MobileDetail /> : <Details />} 
             />
+            <Route path="/cart" element={<MobileCart />} />
             <Route path="/vendor/dashboard" element={<Dashboard />} />
             <Route path="/theme-settings" element={<ThemeSettings />} />
             {/* <Route path="/blog/post/:slug" element={<BlogDetails />} />
