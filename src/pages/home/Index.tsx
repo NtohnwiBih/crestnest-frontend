@@ -2,7 +2,6 @@ import Header from "@/layouts/Header";
 import ProductCard from "@/components/ProductCard";
 import ProductSlider from "@/components/ProductSlider";
 import RankedProductsSection from "@/components/RankedProducts";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import product1 from "@/assets/images/product1.jpg";
 import product2 from "@/assets/images/product2.jpg";
