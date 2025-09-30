@@ -238,7 +238,7 @@ const Category = ({ isOpen, onClose }: MegaDropdownProps) => {
 
   return (
     <div 
-      className="absolute top-full left-0 w-full bg-white border border-gray-200 shadow-xl z-50"
+      className="absolute top-full left-0 w-full bg-background border border-gray-border shadow-xl z-50"
       onMouseLeave={onClose}
     >
       <div className="flex max-h-[400px]">
@@ -255,8 +255,8 @@ const Category = ({ isOpen, onClose }: MegaDropdownProps) => {
                   key={category.name}
                   className={`w-full text-left px-3 py-2.5 text-sm rounded-md transition-colors flex items-center justify-between ${
                     selectedCategory === index 
-                      ? 'bg-white text-gray-900 shadow-sm' 
-                      : 'text-gray-600 hover:bg-white hover:text-gray-900'
+                      ? 'bg-background text-gray-900 shadow-sm' 
+                      : 'text-gray-600 hover:bg-background hover:text-gray-900'
                   }`}
                   onMouseEnter={() => setSelectedCategory(index)}
                 >

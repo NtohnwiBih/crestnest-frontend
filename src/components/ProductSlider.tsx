@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Product {
   id: number;
   image: string;
   title: string;
+  slug: string;
   price: string;
   supplier: string;
   isVerified: boolean;
@@ -21,6 +23,7 @@ interface ProductSliderProps {
 }
 
 const ProductSlider = ({ title, subtitle, products, itemsPerView = 3 }: ProductSliderProps) => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -82,7 +85,7 @@ const ProductSlider = ({ title, subtitle, products, itemsPerView = 3 }: ProductS
         {/* Horizontal card display */}
         <div className="flex gap-4 px-2">
           {visibleProducts.map((product) => (
-            <div key={product.id} className="flex-1 border bg-card text-card-foreground rounded-sm p-2 hover:shadow-sm transition-shadow cursor-pointer">
+            <div key={product.id} onClick={() => navigate(`/product/${product.slug}`)} className="flex-1 border bg-card text-card-foreground rounded-sm p-2 hover:shadow-sm transition-shadow cursor-pointer">
               <div className="aspect-square mb-2">
                 <img 
                   src={product.image} 

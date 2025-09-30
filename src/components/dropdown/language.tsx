@@ -86,7 +86,7 @@ const LangCurrencyDropdown: React.FC = () => {
 
         {/* Language/Currency Dropdown */}
         {isLanguageCurrencyDropdownOpen && (
-            <div className="absolute top-full right-0 mt-2 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50">
+            <div className="absolute top-full right-0 mt-2 w-96 bg-background rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50">
             <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">
                 Set language and currency
@@ -102,7 +102,7 @@ const LangCurrencyDropdown: React.FC = () => {
                 <select
                     value={selectedLanguage}
                     onChange={(e) => setSelectedLanguage(e.target.value)}
-                    className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-gray-900 dark:text-white"
                 >
                     {languages.map((language) => (
                     <option key={language.code} value={language.name}>
@@ -117,7 +117,7 @@ const LangCurrencyDropdown: React.FC = () => {
                 <select
                     value={selectedCurrency}
                     onChange={(e) => setSelectedCurrency(e.target.value)}
-                    className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-gray-900 dark:text-white"
                 >
                     {currencies.map((currency) => (
                     <option key={currency.code} value={currency.name}>

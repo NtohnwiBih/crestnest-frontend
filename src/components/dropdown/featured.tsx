@@ -57,28 +57,28 @@ const FeaturedDropdown = ({ isOpen, onClose, onTopRankingClick, onNewArrivalsCli
         {/* Right Sidebar Services */}
         <div className="w-64 bg-gray-50 border-l border-gray-border p-6">
           <div className="space-y-4">
-            <button className="w-full text-left p-3 rounded-lg hover:bg-white transition-colors group">
+            <button className="w-full text-left p-3 rounded-lg hover:bg-background transition-colors group">
               <div className="flex items-center text-sm text-text-muted group-hover:text-foreground">
                 <Package className="h-4 w-4 mr-3" />
                 Dropshipping center
               </div>
             </button>
             
-            <button className="w-full text-left p-3 rounded-lg hover:bg-white transition-colors group">
+            <button className="w-full text-left p-3 rounded-lg hover:bg-background transition-colors group">
               <div className="flex items-center text-sm text-text-muted group-hover:text-foreground">
                 <Beaker className="h-4 w-4 mr-3" />
                 Sample center
               </div>
             </button>
             
-            <button className="w-full text-left p-3 rounded-lg hover:bg-white transition-colors group">
+            <button className="w-full text-left p-3 rounded-lg hover:bg-background transition-colors group">
               <div className="flex items-center text-sm text-text-muted group-hover:text-foreground">
                 <Zap className="h-4 w-4 mr-3" />
                 Fast customization
               </div>
             </button>
             
-            <button className="w-full text-left p-3 rounded-lg hover:bg-white transition-colors group">
+            <button className="w-full text-left p-3 rounded-lg hover:bg-background transition-colors group">
               <div className="flex items-center text-sm text-text-muted group-hover:text-foreground">
                 <Building className="h-4 w-4 mr-3" />
                 Online Trade Show

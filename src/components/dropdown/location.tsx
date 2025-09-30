@@ -360,7 +360,7 @@ const LocationDropdown: React.FC = () => {
       {isLocationDropdownOpen && (
         <div
           id="location-dropdown"
-          className="absolute top-full right-0 mt-2 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
+          className="absolute top-full right-0 mt-2 w-96 bg-background rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
         >
           <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -381,7 +381,7 @@ const LocationDropdown: React.FC = () => {
                 <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                <span className="px-2 bg-background text-gray-500 dark:text-gray-400">
                   Or
                 </span>
               </div>
@@ -391,7 +391,7 @@ const LocationDropdown: React.FC = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                  className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 flex items-center justify-between"
+                  className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
                     <img
@@ -407,7 +407,7 @@ const LocationDropdown: React.FC = () => {
                 </button>
 
                 {isCountryDropdownOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-1 max-h-60 overflow-y-auto bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-60">
+                  <div className="absolute top-full left-0 right-0 mt-1 max-h-60 overflow-y-auto bg-background border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-60">
                     {allCountries.map((country) => (
                       <button
                         key={country.code}
@@ -434,7 +434,7 @@ const LocationDropdown: React.FC = () => {
               value={postalCode}
               onChange={(e) => setPostalCode(e.target.value)}
               placeholder="Enter postal code"
-              className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-gray-900 dark:text-white"
             />
 
             <button

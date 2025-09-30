@@ -10,71 +10,214 @@ import product3 from "@/assets/images/product3.jpg";
 import product4 from "@/assets/images/product4.jpg";
 import product5 from "@/assets/images/product5.jpg";
 import product6 from "@/assets/images/product6.jpg";
+import product7 from "@/assets/images/product7.jpeg";
+import product8 from "@/assets/images/product8.jpeg";
+import product9 from "@/assets/images/product9.jpeg";
+import product10 from "@/assets/images/product10.jpeg";
+import product11 from "@/assets/images/product11.jpeg";
+import product12 from "@/assets/images/product12.jpeg";
+import product13 from "@/assets/images/product13.jpeg";
+import product14 from "@/assets/images/product14.jpeg";
+import product15 from "@/assets/images/product15.jpeg";
+import product16 from "@/assets/images/product16.jpeg";
+import product17 from "@/assets/images/product17.jpeg";
+import product18 from "@/assets/images/product18.jpeg";
+import product19 from "@/assets/images/product19.jpeg";
+import product20 from "@/assets/images/product20.jpeg";
 import Footer from "@/layouts/Footer";
 import HeroSection from "@/components/HeroSection";
 import TopRanking from "./sections/TopRanking";
 import NewArrivals from "./sections/NewArrivals";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [showFilters, setShowFilters] = useState(false);
   const [currentView, setCurrentView] = useState("main");
 
 const products = [
-    {
-      id: 1,
-      slug: "women-sets-fashion-two-piece-satin-sets",
-      image: product1,
-      title: "Women Sets Fashion Two Piece Satin Sets...",
-      price: "FCFA 5,619-6,...",
-      supplier: "Yiwu Ouze Clothing Co., Ltd.",
-      isVerified: true
-    },
-    {
-      id: 2,
-      slug: "sport-fitness-backless-2piece-set-2022",
-      image: product2,
-      title: "2022 Sport Fitness Backless 2piece Set...",
-      price: "FCFA 7,357-8,...",
-      supplier: "Yiwu Ouze Clothing Co., Ltd.",
-      isVerified: true
-    },
-    {
-      id: 3,
-      slug: "summer-outfits-women-t-shirt",
-      image: product3,
-      title: "Summer Outfits Women T Shirt and...",
-      price: "FCFA 2,571-3,...",
-      supplier: "Fashion Co., Ltd.",
-      isVerified: true
-    },
-    {
-      id: 4,
-      slug: "ladies-short-sets-summer-solid-outfits",
-      image: product4,
-      title: "Ladies Short Sets Summer Solid Outfits...",
-      price: "FCFA 4,145-4,...",
-      supplier: "Style Corp.",
-      isVerified: true
-    },
-    {
-      id: 5,
-      slug: "cotton-women-summer-biker-shorts",
-      image: product5,
-      title: "Cotton Women Summer Biker Shorts...",
-      price: "FCFA 2,239-2,...",
-      supplier: "Cotton Co.",
-      isVerified: true
-    },
-    {
-      id: 6,
-      slug: "summer-two-piece-outfits-for-women",
-      image: product6,
-      title: "Summer Two Piece Outfits for Women...",
-      price: "FCFA 4,044-4,...",
-      supplier: "Summer Fashion Ltd.",
-      isVerified: true
-    }
-  ];
+  {
+    id: 1,
+    slug: "women-sets-fashion-two-piece-satin-sets",
+    image: product1,
+    title: "Women Sets Fashion Two Piece Satin Sets...",
+    price: "FCFA 5,619-6,...",
+    supplier: "Yiwu Ouze Clothing Co., Ltd.",
+    isVerified: true
+  },
+  {
+    id: 2,
+    slug: "sport-fitness-backless-2piece-set-2022",
+    image: product2,
+    title: "2022 Sport Fitness Backless 2piece Set...",
+    price: "FCFA 7,357-8,...",
+    supplier: "Yiwu Ouze Clothing Co., Ltd.",
+    isVerified: true
+  },
+  {
+    id: 3,
+    slug: "summer-outfits-women-t-shirt",
+    image: product3,
+    title: "Summer Outfits Women T Shirt and...",
+    price: "FCFA 2,571-3,...",
+    supplier: "Fashion Co., Ltd.",
+    isVerified: true
+  },
+  {
+    id: 4,
+    slug: "ladies-short-sets-summer-solid-outfits",
+    image: product4,
+    title: "Ladies Short Sets Summer Solid Outfits...",
+    price: "FCFA 4,145-4,...",
+    supplier: "Style Corp.",
+    isVerified: true
+  },
+  {
+    id: 5,
+    slug: "cotton-women-summer-biker-shorts",
+    image: product5,
+    title: "Cotton Women Summer Biker Shorts...",
+    price: "FCFA 2,239-2,...",
+    supplier: "Cotton Co.",
+    isVerified: true
+  },
+  {
+    id: 6,
+    slug: "summer-two-piece-outfits-for-women",
+    image: product6,
+    title: "Summer Two Piece Outfits for Women...",
+    price: "FCFA 4,044-4,...",
+    supplier: "Summer Fashion Ltd.",
+    isVerified: true
+  },
+  {
+    id: 7,
+    slug: "casual-loose-women-tracksuit-2piece",
+    image: product7,
+    title: "Casual Loose Women Tracksuit 2Piece...",
+    price: "FCFA 6,229-7,...",
+    supplier: "Urban Wear Ltd.",
+    isVerified: true
+  },
+  {
+    id: 8,
+    slug: "fashion-ladies-office-blazer-pants",
+    image: product8,
+    title: "Fashion Ladies Office Blazer & Pants...",
+    price: "FCFA 10,549-11,...",
+    supplier: "Office Style Inc.",
+    isVerified: true
+  },
+  {
+    id: 9,
+    slug: "crop-top-and-shorts-summer-sets",
+    image: product9,
+    title: "Crop Top and Shorts Summer Sets...",
+    price: "FCFA 3,999-4,...",
+    supplier: "Trendy Co.",
+    isVerified: false
+  },
+  {
+    id: 10,
+    slug: "two-piece-knitwear-set-women",
+    image: product10,
+    title: "Two Piece Knitwear Set Women...",
+    price: "FCFA 8,229-9,...",
+    supplier: "Knits & Co.",
+    isVerified: true
+  },
+  {
+    id: 11,
+    slug: "ladies-sportswear-yoga-2pcs",
+    image: product11,
+    title: "Ladies Sportswear Yoga 2Pcs Set...",
+    price: "FCFA 5,449-6,...",
+    supplier: "Activewear Pro.",
+    isVerified: true
+  },
+  {
+    id: 12,
+    slug: "womens-casual-linen-shirt-and-pants",
+    image: product12,
+    title: "Women's Casual Linen Shirt & Pants...",
+    price: "FCFA 7,899-8,...",
+    supplier: "Linen Works Ltd.",
+    isVerified: false
+  },
+  {
+    id: 13,
+    slug: "fashion-denim-jacket-and-jeans",
+    image: product13,
+    title: "Fashion Denim Jacket & Jeans Set...",
+    price: "FCFA 11,199-12,...",
+    supplier: "Denim World Ltd.",
+    isVerified: true
+  },
+  {
+    id: 14,
+    slug: "party-wear-dress-sets-women",
+    image: product14,
+    title: "Party Wear Dress Sets for Women...",
+    price: "FCFA 9,750-10,...",
+    supplier: "Glamour Line Co.",
+    isVerified: true
+  },
+  {
+    id: 15,
+    slug: "ladies-casual-sweatshirt-pants",
+    image: product15,
+    title: "Ladies Casual Sweatshirt & Pants...",
+    price: "FCFA 4,899-5,...",
+    supplier: "Comfort Wear Ltd.",
+    isVerified: false
+  },
+  {
+    id: 16,
+    slug: "beachwear-two-piece-floral-set",
+    image: product16,
+    title: "Beachwear Two Piece Floral Set...",
+    price: "FCFA 6,550-7,...",
+    supplier: "Beach & Sun Ltd.",
+    isVerified: true
+  },
+  {
+    id: 17,
+    slug: "autumn-coat-and-skirt-outfits",
+    image: product17,
+    title: "Autumn Coat and Skirt Outfits...",
+    price: "FCFA 12,200-13,...",
+    supplier: "Autumn Trends Inc.",
+    isVerified: true
+  },
+  {
+    id: 18,
+    slug: "luxury-silk-sleepwear-women-2pcs",
+    image: product18,
+    title: "Luxury Silk Sleepwear Women 2Pcs...",
+    price: "FCFA 15,399-16,...",
+    supplier: "Silk Dreams Co.",
+    isVerified: true
+  },
+  {
+    id: 19,
+    slug: "elegant-formal-suit-for-ladies",
+    image: product19,
+    title: "Elegant Formal Suit for Ladies...",
+    price: "FCFA 13,799-14,...",
+    supplier: "Formal Wear Ltd.",
+    isVerified: true
+  },
+  {
+    id: 20,
+    slug: "trendy-summer-dress-sets-women",
+    image: product20,
+    title: "Trendy Summer Dress Sets Women...",
+    price: "FCFA 5,699-6,...",
+    supplier: "Trendy Line Ltd.",
+    isVerified: false
+  }
+];
+
 
   // Top deals with discounts
   const topDeals = [
@@ -185,29 +328,21 @@ const products = [
               <h2 className="text-sm font-medium text-foreground mb-3">Mixed Categories</h2>
               <div className="grid grid-cols-6 gap-2">
                 {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    slug={product.slug}
-                    image={product.image}
-                    title={product.title}
-                    price={product.price}
-                    supplier={product.supplier}
-                    isVerified={product.isVerified}
-                    isLive={product.id === 6}
-                  />
+                  <div key={product.id} onClick={() => navigate(`/product/${product.slug}`)}>
+                    <ProductCard
+                      key={product.id}
+                      slug={product.slug}
+                      image={product.image}
+                      title={product.title}
+                      price={product.price}
+                      supplier={product.supplier}
+                      isVerified={product.isVerified}
+                      isLive={product.id === 6}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
-          </div>
-          
-          <div className="mt-6 text-center">
-            <Button 
-              onClick={() => setShowFilters(!showFilters)}
-              variant="outline"
-              className="text-xs"
-            >
-              {showFilters ? 'Back to Homepage' : 'Search Products'}
-            </Button>
           </div>
         </main>
       </div>

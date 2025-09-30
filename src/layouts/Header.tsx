@@ -263,7 +263,7 @@ const Header = ({ onTopRankingClick, onNewArrivalsClick }: HeaderProps = {}) => 
           >
             Featured selections
           </button>
-          <button className="text-xs text-text-muted">Order protections</button>
+          {/* <button className="text-xs text-text-muted">Order protections</button> */}
           <div className="flex-1"></div>
           <button className="text-xs text-text-muted">AI sourcing agent</button>
           <button className="text-xs text-text-muted">Buyer Central</button>

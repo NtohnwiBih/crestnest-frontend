@@ -313,35 +313,6 @@ const products = [
             ))}
         </div>
       </div>
-
-      {/* Quick Actions */}
-      <div className="px-4 mt-6">
-        <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-2 gap-3">
-          <Card className="p-4  shadow-sm bg-gradient-to-r from-blue-50 to-blue-100">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                <Heart className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Wishlist</p>
-                <p className="text-xs text-muted-foreground">12 items</p>
-              </div>
-            </div>
-          </Card>
-          <Card className="p-4  shadow-sm bg-gradient-to-r from-green-50 to-green-100">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                <ShoppingCart className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Orders</p>
-                <p className="text-xs text-muted-foreground">Track orders</p>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
     </div>
   );
 
@@ -555,7 +526,9 @@ const products = [
           </div>
         </div>
       )}
-      {/* Mobile Header */}
+      
+      {/* Mobile Header - Hidden when messenger tab is active */}
+      {activeTab !== 'messenger' && (
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
         <div className="flex items-center gap-3 px-4 py-3">
           {/* <Sheet>
@@ -608,6 +581,7 @@ const products = [
           </div>
         </div>
       </header>
+      )}
 
       {/* Main Content */}
       <main className="min-h-screen pb-16">
