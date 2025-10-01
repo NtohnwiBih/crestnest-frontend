@@ -185,7 +185,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Chat Header */}
-      <div className="sticky top-0 z-10 flex items-center gap-3 px-4 py-3 border-b bg-background/95 backdrop-blur-sm">
+      <div className="fixed top-0 left-0 right-0 z-20 flex items-center gap-3 px-4 py-3 border-b bg-background/95 backdrop-blur-sm">
         <Button
           variant="ghost"
           size="sm"
@@ -221,7 +221,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
       </div>
 
       {/* Messages */}
-      <ScrollArea ref={scrollAreaRef} className="flex-1 px-4">
+      <ScrollArea ref={scrollAreaRef} className="flex-1 px-4 pt-16 pb-20">
         <div className="space-y-4 py-4">
           {messages.map((message) => (
             <div
@@ -248,7 +248,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
       </ScrollArea>
 
       {/* Message Input */}
-      <div className="flex items-center gap-2 px-4 py-3 border-t bg-background/95 backdrop-blur-sm">
+      <div className="fixed bottom-0 left-0 right-0 z-20 flex items-center gap-2 px-4 py-3 border-t bg-background/95 backdrop-blur-sm">
         <Button
           variant="ghost"
           size="sm"
@@ -294,7 +294,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
 
       {/* Attachment Options Grid */}
       <div
-        className={`border-t bg-background/95 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`fixed bottom-16 left-0 right-0 z-10 border-t bg-background/95 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden ${
           isAttachmentMenuOpen ? 'max-h-48' : 'max-h-0'
         }`}
       >
@@ -318,7 +318,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
 
       {/* Emoji Picker */}
       <div
-        className={`border-t bg-background transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`fixed bottom-16 left-0 right-0 z-10 border-t bg-background transition-all duration-300 ease-in-out overflow-hidden ${
           isEmojiPickerOpen ? 'max-h-[450px]' : 'max-h-0'
         }`}
       >
@@ -331,7 +331,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
             className="gap-2"
           >
             <Keyboard className="h-4 w-4" />
-            <span className="text-xs">abc</span>
+            <span className="text-xs">Keyboard</span>
           </Button>
         </div>
         <div className="flex justify-center">
