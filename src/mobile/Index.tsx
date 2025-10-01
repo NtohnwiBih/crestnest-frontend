@@ -244,27 +244,27 @@ const IndexMobile = () => {
   ];
 
   const topDeals = [
-    { id: 1, name: 'Flash Sale Phone', price: '$499', originalPrice: '$799', image: '/placeholder.svg', rating: 4.8, discount: '38%' },
-    { id: 2, name: 'Bluetooth Speaker', price: '$89', originalPrice: '$149', image: '/placeholder.svg', rating: 4.7, discount: '40%' },
-    { id: 3, name: 'Tablet Pro', price: '$599', originalPrice: '$899', image: '/placeholder.svg', rating: 4.6, discount: '33%' },
-    { id: 4, name: 'Gaming Chair', price: '$199', originalPrice: '$299', image: '/placeholder.svg', rating: 4.5, discount: '33%' },
-    { id: 5, name: 'Smart TV 55"', price: '$699', originalPrice: '$999', image: '/placeholder.svg', rating: 4.7, discount: '30%' },
+    { id: 1, name: 'Flash Sale Phone', slug: 'flash-sale-phone', price: '$499', originalPrice: '$799', image: '/placeholder.svg', rating: 4.8, discount: '38%' },
+    { id: 2, name: 'Bluetooth Speaker', slug: 'bluetooth-speaker', price: '$89', originalPrice: '$149', image: '/placeholder.svg', rating: 4.7, discount: '40%' },
+    { id: 3, name: 'Tablet Pro', slug: 'tablet-pro', price: '$599', originalPrice: '$899', image: '/placeholder.svg', rating: 4.6, discount: '33%' },
+    { id: 4, name: 'Gaming Chair', slug: 'gaming-chair', price: '$199', originalPrice: '$299', image: '/placeholder.svg', rating: 4.5, discount: '33%' },
+    { id: 5, name: 'Smart TV 55"', slug: 'smart-tv-55', price: '$699', originalPrice: '$999', image: '/placeholder.svg', rating: 4.7, discount: '30%' },
   ];
 
   const topRanking = [
-    { id: 1, name: 'iPhone 15 Pro', price: '$1199', originalPrice: '$1299', image: '/placeholder.svg', rating: 4.9, rank: 1 },
-    { id: 2, name: 'MacBook Air M3', price: '$1399', originalPrice: '$1499', image: '/placeholder.svg', rating: 4.8, rank: 2 },
-    { id: 3, name: 'AirPods Pro', price: '$249', originalPrice: '$279', image: '/placeholder.svg', rating: 4.7, rank: 3 },
-    { id: 4, name: 'iPad Air', price: '$699', originalPrice: '$799', image: '/placeholder.svg', rating: 4.6, rank: 4 },
-    { id: 5, name: 'Apple Watch', price: '$399', originalPrice: '$449', image: '/placeholder.svg', rating: 4.8, rank: 5 },
+    { id: 1, name: 'iPhone 15 Pro', slug: 'iphone-15-pro', price: '$1199', originalPrice: '$1299', image: '/placeholder.svg', rating: 4.9, rank: 1 },
+    { id: 2, name: 'MacBook Air M3', slug: 'macbook-air-m3', price: '$1399', originalPrice: '$1499', image: '/placeholder.svg', rating: 4.8, rank: 2 },
+    { id: 3, name: 'AirPods Pro', slug: 'airpods-pro', price: '$249', originalPrice: '$279', image: '/placeholder.svg', rating: 4.7, rank: 3 },
+    { id: 4, name: 'iPad Air', slug: 'ipad-air', price: '$699', originalPrice: '$799', image: '/placeholder.svg', rating: 4.6, rank: 4 },
+    { id: 5, name: 'Apple Watch', slug: 'apple-watch', price: '$399', originalPrice: '$449', image: '/placeholder.svg', rating: 4.8, rank: 5 },
   ];
 
   const newArrivals = [
-    { id: 1, name: 'VR Headset Pro', price: '$799', originalPrice: null, image: '/placeholder.svg', rating: 4.5, isNew: true },
-    { id: 2, name: 'Smart Ring', price: '$299', originalPrice: null, image: '/placeholder.svg', rating: 4.3, isNew: true },
-    { id: 3, name: 'Foldable Phone', price: '$1899', originalPrice: null, image: '/placeholder.svg', rating: 4.7, isNew: true },
-    { id: 4, name: 'AI Assistant Hub', price: '$399', originalPrice: null, image: '/placeholder.svg', rating: 4.4, isNew: true },
-    { id: 5, name: 'Solar Power Bank', price: '$89', originalPrice: null, image: '/placeholder.svg', rating: 4.2, isNew: true },
+    { id: 1, name: 'VR Headset Pro', slug: 'vr-headset-pro', price: '$799', originalPrice: null, image: '/placeholder.svg', rating: 4.5, isNew: true },
+    { id: 2, name: 'Smart Ring', slug: 'smart-ring', price: '$299', originalPrice: null, image: '/placeholder.svg', rating: 4.3, isNew: true },
+    { id: 3, name: 'Foldable Phone', slug: 'foldable-phone', price: '$1899', originalPrice: null, image: '/placeholder.svg', rating: 4.7, isNew: true },
+    { id: 4, name: 'AI Assistant Hub', slug: 'ai-assistant-hub', price: '$399', originalPrice: null, image: '/placeholder.svg', rating: 4.4, isNew: true },
+    { id: 5, name: 'Solar Power Bank', slug: 'solar-power-bank', price: '$89', originalPrice: null, image: '/placeholder.svg', rating: 4.2, isNew: true },
   ];
 
   const bottomTabs = [
@@ -392,7 +392,7 @@ const IndexMobile = () => {
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex w-max space-x-3 px-4">
                 {topDeals.map((product) => (
-                  <Card key={product.id} className="w-35 p-1 shadow-sm flex-shrink-0">
+                  <Card key={product.id} onClick={() => navigate(`/product/${product.slug}`)} className="w-35 p-1 shadow-sm flex-shrink-0">
                     <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
                       <Badge className="absolute top-2 left-2 bg-destructive text-destructive-foreground px-2 py-0.5 text-xs">
                         -{product.discount}
@@ -424,7 +424,7 @@ const IndexMobile = () => {
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex w-max space-x-3 px-4">
                 {topRanking.map((product) => (
-                  <Card key={product.id} className="w-35 p-1 shadow-sm flex-shrink-0">
+                  <Card key={product.id} onClick={() => navigate(`/product/${product.slug}`)} className="w-35 p-1 shadow-sm flex-shrink-0">
                     <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
                       <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold">
                         #{product.rank}
@@ -467,7 +467,7 @@ const IndexMobile = () => {
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex w-max space-x-3 px-4">
                 {newArrivals.map((product) => (
-                  <Card key={product.id} className="w-40 p-1 shadow-sm flex-shrink-0">
+                  <Card key={product.id} onClick={() => navigate(`/product/${product.slug}`)} className="w-40 p-1 shadow-sm flex-shrink-0">
                     <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
                       <Badge className="absolute top-2 left-2 bg-green-500 px-2 py-0.5 text-xs">
                         NEW
