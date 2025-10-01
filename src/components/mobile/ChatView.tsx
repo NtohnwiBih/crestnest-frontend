@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Send, MoreVertical, Phone, Video, Plus } from 'lucide-react';
+import { ArrowLeft, Send, MoreVertical, Phone, Video, Plus, X, Smile, Camera, FileText, Mic, Heart, CreditCard, Languages, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import EmojiPicker, { type EmojiClickData } from 'emoji-picker-react';
 
 interface Message {
   id: string;
@@ -25,8 +27,20 @@ interface ChatViewProps {
   onBack: () => void;
 }
 
+const attachmentOptions = [
+  { icon: Camera, label: 'Camera', color: 'text-blue-500' },
+  { icon: FileText, label: 'Files', color: 'text-purple-500' },
+  { icon: Mic, label: 'Voice Message', color: 'text-green-500' },
+  { icon: Heart, label: 'Favorites', color: 'text-red-500' },
+  { icon: CreditCard, label: 'Business Card', color: 'text-orange-500' },
+  { icon: Languages, label: 'Translation', color: 'text-indigo-500' },
+  { icon: MapPin, label: 'Location', color: 'text-teal-500' },
+];
+
 const ChatView = ({ chatId, onBack }: ChatViewProps) => {
   const [messageText, setMessageText] = useState('');
+  const [isAttachmentMenuOpen, setIsAttachmentMenuOpen] = useState(false);
+  const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   // Mock data - in real app this would come from props or API
@@ -134,10 +148,20 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
 
   const handleSendMessage = () => {
     if (messageText.trim()) {
-      // Here you would typically send the message to your backend
       console.log('Sending message:', messageText);
       setMessageText('');
+      setIsEmojiPickerOpen(false);
     }
+  };
+
+  const handleEmojiClick = (emojiData: EmojiClickData) => {
+    setMessageText((prev) => prev + emojiData.emoji);
+  };
+
+  const handleAttachmentClick = (label: string) => {
+    console.log('Attachment clicked:', label);
+    setIsAttachmentMenuOpen(false);
+    // Here you would implement the actual functionality for each option
   };
 
   return (
@@ -205,10 +229,43 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
         </div>
       </ScrollArea>
 
+      {/* Attachment Options Grid */}
+      <div
+        className={`border-t bg-background/95 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden ${
+          isAttachmentMenuOpen ? 'max-h-48' : 'max-h-0'
+        }`}
+      >
+        <div className="grid grid-cols-4 gap-4 p-4">
+          {attachmentOptions.map((option) => (
+            <button
+              key={option.label}
+              onClick={() => handleAttachmentClick(option.label)}
+              className="flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-muted transition-colors"
+            >
+              <div className={`p-3 rounded-full bg-muted ${option.color}`}>
+                <option.icon className="h-5 w-5" />
+              </div>
+              <span className="text-xs text-muted-foreground text-center">
+                {option.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Message Input */}
       <div className="flex items-center gap-2 px-4 py-3 border-t bg-background/95 backdrop-blur-sm">
-        <Button variant="ghost" size="sm" className="rounded-full">
-          <Plus className="h-5 w-5" />
+        <Button
+          variant="ghost"
+          size="sm"
+          className="rounded-full"
+          onClick={() => setIsAttachmentMenuOpen(!isAttachmentMenuOpen)}
+        >
+          {isAttachmentMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Plus className="h-5 w-5" />
+          )}
         </Button>
         
         <div className="flex-1 relative">
@@ -220,6 +277,21 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
             className="rounded-full pr-12"
           />
         </div>
+        
+        <Popover open={isEmojiPickerOpen} onOpenChange={setIsEmojiPickerOpen}>
+          <PopoverTrigger asChild>
+            <Button variant="ghost" size="sm" className="rounded-full">
+              <Smile className="h-5 w-5" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-full p-0 border-0" align="end">
+            <EmojiPicker
+              onEmojiClick={handleEmojiClick}
+              width={320}
+              height={400}
+            />
+          </PopoverContent>
+        </Popover>
         
         <Button
           size="sm"
