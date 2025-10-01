@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Heart, Search, ShoppingCart } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '../ui/button';
 
 interface Chat {
   id: string;
@@ -80,7 +81,20 @@ const ChatListView = ({ onChatSelect }: ChatListViewProps) => {
     <div className="flex flex-col h-full bg-background pb-20">
       {/* Header */}
       <div className="px-4 py-3 border-b bg-background/95 backdrop-blur-sm">
-        <h2 className="text-lg font-semibold mb-3">Messages</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold mb-3">Messages</h2>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="sm" className="relative rounded-full">
+              <Heart className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="sm" className="relative rounded-full">
+              <ShoppingCart className="h-5 w-5" />
+              <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
+                3
+              </Badge>
+            </Button>
+          </div>
+        </div>
         
         {/* Search */}
         <div className="relative">
