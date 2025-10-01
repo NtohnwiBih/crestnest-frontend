@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Home, Grid, Tag, User, Mail, Heart, ShoppingCart} from 'lucide-react';
+import { Home, Grid, Tag, User, Mail} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ChatView from '@/components/mobile/ChatView';
 import ChatListView from '@/components/mobile/ChatListView';
 import { Link } from 'react-router-dom';
-import { Badge } from '@/components/ui/badge';
 
 const MessengerPage = () => {
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
