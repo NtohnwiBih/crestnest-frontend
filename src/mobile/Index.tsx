@@ -1,36 +1,19 @@
 import { useState } from 'react';
-import { Search, ShoppingCart, User, Heart, Bell, Home, Grid, Tag, Settings, X, Download, Mail, Star, Clock, TrendingUp, ArrowBigRight } from 'lucide-react';
+import { Search, Menu, ShoppingCart, Heart, Home, Grid, Tag, User, Mail, X, Download, Star, Clock, TrendingUp, ArrowBigRight } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-// import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Card } from '@/components/ui/card';
-import product1 from "@/assets/images/product1.jpg";
-import product2 from "@/assets/images/product2.jpg";
-import product3 from "@/assets/images/product3.jpg";
-import product4 from "@/assets/images/product4.jpg";
-import product5 from "@/assets/images/product5.jpg";
-import product6 from "@/assets/images/product6.jpg";
 import ProductCard from '@/components/ProductCard';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import SignInView from '@/components/mobile/SignInView';
-import AccountTypeSelection from '@/components/mobile/AccountTypeSelection';
-import CreateAccountForm from '@/components/mobile/CreateAccount';
-import VendorVerification from '@/components/mobile/VendorVerification';
-import ChatListView from '@/components/mobile/ChatListView';
-import ChatView from '@/components/mobile/ChatView';
-import { useNavigate } from 'react-router-dom';
 
 const IndexMobile = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('home');
   const [showInstallBanner, setShowInstallBanner] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('For you')
-  const [authView, setAuthView] = useState<'none' | 'signin' | 'account-type' | 'signup' | 'vendor-verification'>('none');
-  const [selectedAccountType, setSelectedAccountType] = useState<'buyer' | 'vendor' | null>(null);
-  const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const { isInstallable, isInstalled, installApp } = usePWAInstall();
 
   const handleInstallClick = async () => {
@@ -57,11 +40,11 @@ const IndexMobile = () => {
     'Packaging & Printing',
   ];
 
-const products = [
+  const products = [
     {
       id: 1,
       slug: "women-sets-fashion-two-piece-satin-sets",
-      image: product1,
+      image: '/placeholder.svg',
       title: "Women Sets Fashion Two Piece Satin Sets...",
       price: "FCFA 5,619-6,...",
       supplier: "Yiwu Ouze Clothing Co., Ltd.",
@@ -70,7 +53,7 @@ const products = [
     {
       id: 2,
       slug: "sport-fitness-backless-2piece-set-2022",
-      image: product2,
+      image: '/placeholder.svg',
       title: "2022 Sport Fitness Backless 2piece Set...",
       price: "FCFA 7,357-8,...",
       supplier: "Yiwu Ouze Clothing Co., Ltd.",
@@ -79,7 +62,7 @@ const products = [
     {
       id: 3,
       slug: "summer-outfits-women-t-shirt",
-      image: product3,
+      image: '/placeholder.svg',
       title: "Summer Outfits Women T Shirt and...",
       price: "FCFA 2,571-3,...",
       supplier: "Fashion Co., Ltd.",
@@ -88,7 +71,7 @@ const products = [
     {
       id: 4,
       slug: "ladies-short-sets-summer-solid-outfits",
-      image: product4,
+      image: '/placeholder.svg',
       title: "Ladies Short Sets Summer Solid Outfits...",
       price: "FCFA 4,145-4,...",
       supplier: "Style Corp.",
@@ -97,7 +80,7 @@ const products = [
     {
       id: 5,
       slug: "cotton-women-summer-biker-shorts",
-      image: product5,
+      image: '/placeholder.svg',
       title: "Cotton Women Summer Biker Shorts...",
       price: "FCFA 2,239-2,...",
       supplier: "Cotton Co.",
@@ -106,7 +89,7 @@ const products = [
     {
       id: 6,
       slug: "summer-two-piece-outfits-for-women",
-      image: product6,
+      image: '/placeholder.svg',
       title: "Summer Two Piece Outfits for Women...",
       price: "FCFA 4,044-4,...",
       supplier: "Summer Fashion Ltd.",
@@ -138,620 +121,17 @@ const products = [
     { id: 5, name: 'Solar Power Bank', price: '$89', originalPrice: null, image: '/placeholder.svg', rating: 4.2, isNew: true },
   ];
 
-  const handleChatSelect = (chatId: string) => {
-    setSelectedChatId(chatId);
-  };
-
-  const handleBackToChats = () => {
-    setSelectedChatId(null);
-  };
-
   const bottomTabs = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'categories', label: 'Categories', icon: Grid },
-    { id: 'messenger', label: 'Messenger', icon: Mail },
-    { id: 'deals', label: 'Deals', icon: Tag },
-    { id: 'my-nest', label: 'My Nest', icon: User },
+    { id: 'home', label: 'Home', icon: Home, path: '/' },
+    { id: 'categories', label: 'Categories', icon: Grid, path: '/products/search' },
+    { id: 'messenger', label: 'Messenger', icon: Mail, path: '/messenger' },
+    { id: 'deals', label: 'Deals', icon: Tag, path: '/deals' },
+    { id: 'my-nest', label: 'My Nest', icon: User, path: '/my-nest' },
   ];
-
-  const renderHomeContent = () => (
-    <div className="pb-20">
-      {/* Hero Banner */}
-      <div className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 mx-4 mt-4 rounded-2xl p-6 text-primary-foreground shadow-lg">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Flash Sale</h2>
-            <p className="text-sm opacity-90 mb-4">Up to 70% off on selected items</p>
-            <Button
-             variant="secondary"
-             size="sm" 
-             className="rounded-full font-medium px-6">
-              Shop Now
-            </Button>
-          </div>
-          <div className="text-6xl opacity-20">🛍️</div>
-        </div>
-      </div>
-
-      {/* Top Deals Slider */}
-      <div className="mt-6">
-        <div className="flex items-center justify-between mb-4 px-4">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
-            <Tag className="h-5 w-5 text-primary" />
-            Top Deals
-          </h3>
-          <Button variant="ghost" size="sm" className="text-primary">
-            <ArrowBigRight className="h-5 w-5" />
-          </Button>
-        </div>
-        <ScrollArea className="w-full whitespace-nowrap">
-          <div className="flex w-max space-x-3 px-4">
-            {topDeals.map((product) => (
-              <Card key={product.id} className="w-35 p-1 shadow-sm flex-shrink-0">
-                <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
-                  <Badge className="absolute top-2 left-2 bg-destructive text-destructive-foreground px-2 py-0.5 text-xs">
-                    -{product.discount}
-                  </Badge>
-                </div>
-                <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-primary font-bold text-sm">{product.price}</span>
-                  <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  {/* <div className="flex items-center gap-1">
-                    <span className="text-xs text-amber-500">⭐</span>
-                    <span className="text-xs text-muted-foreground">{product.rating}</span>
-                  </div>
-                  <Button size="sm" className="h-6 px-2 text-xs rounded-full">
-                    Add
-                  </Button> */}
-                </div>
-              </Card>
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
-
-      {/* Top Ranking */}
-      <div className="mt-6">
-        <div className="flex items-center justify-between mb-4 px-4">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            Top Ranking
-          </h3>
-          <Button variant="ghost" size="sm" className="text-primary">
-            <ArrowBigRight className="h-5 w-5" />
-          </Button>
-        </div>
-        <ScrollArea className="w-full whitespace-nowrap">
-          <div className="flex w-max space-x-3 px-4">
-            {topRanking.map((product) => (
-              <Card key={product.id} className="w-35 p-1  shadow-sm flex-shrink-0">
-                <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
-                  <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold">
-                    #{product.rank}
-                  </Badge>
-                </div>
-                <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-primary font-bold text-sm">{product.price}</span>
-                  {product.originalPrice && (
-                    <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
-                  )}
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <Star className="h-3 w-3 text-amber-500 fill-current" />
-                    <span className="text-xs text-muted-foreground">{product.rating}</span>
-                  </div>
-                  <Button size="sm" className="h-6 px-2 text-xs rounded-full">
-                    Add
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
-
-      {/* New Arrivals */}
-      <div className="mt-6">
-        <div className="flex items-center justify-between mb-4 px-4">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
-            <Clock className="h-5 w-5 text-primary" />
-            New Arrivals
-          </h3>
-          <Button variant="ghost" size="sm" className="text-primary">
-            <ArrowBigRight className="h-5 w-5" />
-          </Button>
-        </div>
-        <ScrollArea className="w-full whitespace-nowrap">
-          <div className="flex w-max space-x-3 px-4">
-            {newArrivals.map((product) => (
-              <Card key={product.id} className="w-40 p-1 shadow-sm flex-shrink-0">
-                <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
-                  <Badge className="absolute top-2 left-2 bg-green-500 px-2 py-0.5 text-xs">
-                    NEW
-                  </Badge>
-                </div>
-                <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-primary font-bold text-sm">{product.price}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <Star className="h-3 w-3 text-amber-500 fill-current" />
-                    <span className="text-xs text-muted-foreground">{product.rating}</span>
-                  </div>
-                  <Button size="sm" className="h-6 px-2 text-xs rounded-full">
-                    Add
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
-
-      {/* Featured Products */}
-      <div className="px-4 mt-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">Featured Products</h3>
-          <Button variant="ghost" size="sm" className="text-primary">
-            View All
-          </Button>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-            {products.map((product) => (
-              <div key={product.id} onClick={() => navigate(`/product/${product.slug}`)}>
-                <ProductCard
-                key={product.id}
-                slug={product.slug}
-                image={product.image}
-                title={product.title}
-                price={product.price}
-                supplier={product.supplier}
-                isVerified={product.isVerified}
-                isLive={product.id === 6}
-                />
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
-  );
-
-  const getCategoryContent = () => {
-    switch (selectedCategory) {
-      case 'For you':
-        return (
-          <>
-            <div>
-              <h3 className="text-base font-semibold mb-3">Recommendations</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: 'Cigar Cutters', image: '/placeholder.svg' },
-                  { name: 'Electric Lighter', image: '/placeholder.svg' },
-                  { name: 'Cigarette Cases', image: '/placeholder.svg' },
-                  { name: 'Smoking Pipes', image: '/placeholder.svg' },
-                  { name: 'Candle Lighter', image: '/placeholder.svg' },
-                  { name: 'Jet Lighters', image: '/placeholder.svg' },
-                  { name: 'Cigar Accessories', image: '/placeholder.svg' },
-                  { name: 'Smoking Pen', image: '/placeholder.svg' },
-                  { name: 'Cigarette Lighter', image: '/placeholder.svg' },
-                ].map((item) => (
-                  <Card key={item.name} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs text-center line-clamp-2">{item.name}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-base font-semibold mb-3">Get product inspiration</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { price: 'FCFA 2,057-2,443', minOrder: '20 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 1,286-1,929', minOrder: '200 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 1,466-2,076', minOrder: '50 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 1,286-1,414', minOrder: '2 pieces', image: '/placeholder.svg' },
-                ].map((item, idx) => (
-                  <Card key={idx} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs font-semibold mb-1">{item.price}</p>
-                    <p className="text-xs text-muted-foreground">Min. order: {item.minOrder}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </>
-        );
-
-      case 'Featured':
-        return (
-          <>
-            <div>
-              <h3 className="text-base font-semibold mb-3">Limited-time deals for you</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: 'Ashtrays', image: '/placeholder.svg' },
-                  { name: 'Matches', image: '/placeholder.svg' },
-                  { name: 'Knife Sets', image: '/placeholder.svg' },
-                  { name: 'Decorative Trays', image: '/placeholder.svg' },
-                  { name: 'Sharpeners', image: '/placeholder.svg' },
-                  { name: 'Cigarette Cases', image: '/placeholder.svg' },
-                  { name: 'Fire Pits', image: '/placeholder.svg' },
-                  { name: 'Metal Arts', image: '/placeholder.svg' },
-                  { name: 'Smoking Pipes', image: '/placeholder.svg' },
-                ].map((item) => (
-                  <Card key={item.name} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs text-center line-clamp-2">{item.name}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-base font-semibold mb-3">Trending Products</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { price: 'FCFA 399-444', minOrder: '100 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 283-335', minOrder: '50 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 1,200-1,500', minOrder: '25 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 800-950', minOrder: '10 pieces', image: '/placeholder.svg' },
-                ].map((item, idx) => (
-                  <Card key={idx} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs font-semibold mb-1">{item.price}</p>
-                    <p className="text-xs text-muted-foreground">Min. order: {item.minOrder}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </>
-        );
-
-      case 'Deals':
-        return (
-          <>
-            <div>
-              <h3 className="text-base font-semibold mb-3">Hot Deals</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: 'Birthday Candles', image: '/placeholder.svg' },
-                  { name: 'Hookahs', image: '/placeholder.svg' },
-                  { name: 'Scented Candles', image: '/placeholder.svg' },
-                  { name: 'Cigar Accessories', image: '/placeholder.svg' },
-                  { name: 'Openers', image: '/placeholder.svg' },
-                  { name: 'Smart Kitchen Tools', image: '/placeholder.svg' },
-                ].map((item) => (
-                  <Card key={item.name} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs text-center line-clamp-2">{item.name}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-base font-semibold mb-3">Best Offers</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { price: 'FCFA 500-650', minOrder: '30 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 750-890', minOrder: '15 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 1,100-1,300', minOrder: '20 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 350-450', minOrder: '50 pieces', image: '/placeholder.svg' },
-                ].map((item, idx) => (
-                  <Card key={idx} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs font-semibold mb-1">{item.price}</p>
-                    <p className="text-xs text-muted-foreground">Min. order: {item.minOrder}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </>
-        );
-
-      case 'Sports & Entertainment':
-        return (
-          <>
-            <div>
-              <h3 className="text-base font-semibold mb-3">Fitness and Sports</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: 'Plate Loaded Machines', image: '/placeholder.svg' },
-                  { name: 'Flashlights & Torches', image: '/placeholder.svg' },
-                  { name: 'Sauna Suits', image: '/placeholder.svg' },
-                  { name: 'Outdoor Fitness Equipment', image: '/placeholder.svg' },
-                  { name: 'Smart Fitness Products', image: '/placeholder.svg' },
-                  { name: 'Yoga Equipment', image: '/placeholder.svg' },
-                ].map((item) => (
-                  <Card key={item.name} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs text-center line-clamp-2">{item.name}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-base font-semibold mb-3">Sports Accessories</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { price: 'FCFA 2,500-3,200', minOrder: '10 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 1,800-2,400', minOrder: '15 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 950-1,150', minOrder: '25 pieces', image: '/placeholder.svg' },
-                  { price: 'FCFA 450-600', minOrder: '50 pieces', image: '/placeholder.svg' },
-                ].map((item, idx) => (
-                  <Card key={idx} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs font-semibold mb-1">{item.price}</p>
-                    <p className="text-xs text-muted-foreground">Min. order: {item.minOrder}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </>
-        );
-
-      case 'Home & Garden':
-        return (
-          <>
-            <div>
-              <h3 className="text-base font-semibold mb-3">Pet Intelligence</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: 'Pet Bowls & Feeders', image: '/placeholder.svg' },
-                  { name: 'Pet Tracker', image: '/placeholder.svg' },
-                  { name: 'Bark Control', image: '/placeholder.svg' },
-                  { name: 'Pet Interactive Toys', image: '/placeholder.svg' },
-                  { name: 'Pet Training Supplies', image: '/placeholder.svg' },
-                  { name: 'Cat Litter Box', image: '/placeholder.svg' },
-                ].map((item) => (
-                  <Card key={item.name} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs text-center line-clamp-2">{item.name}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-base font-semibold mb-3">Smart Home</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: 'Smart Speakers', image: '/placeholder.svg' },
-                  { name: 'Smart Lights', image: '/placeholder.svg' },
-                  { name: 'Security Cameras', image: '/placeholder.svg' },
-                  { name: 'Smart Locks', image: '/placeholder.svg' },
-                  { name: 'Thermostats', image: '/placeholder.svg' },
-                  { name: 'Smart Plugs', image: '/placeholder.svg' },
-                ].map((item) => (
-                  <Card key={item.name} className="p-2 shadow-sm">
-                    <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                    <p className="text-xs text-center line-clamp-2">{item.name}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </>
-        );
-
-      default:
-        return (
-          <div>
-            <h3 className="text-base font-semibold mb-3">{selectedCategory} Products</h3>
-            <div className="grid grid-cols-3 gap-3">
-              {Array.from({ length: 9 }).map((_, idx) => (
-                <Card key={idx} className="p-2 shadow-sm">
-                  <div className="aspect-square bg-muted rounded-lg mb-2"></div>
-                  <p className="text-xs text-center">Product {idx + 1}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        );
-    }
-  };
-
-  const renderCategoriesContent = () => (
-    <div className="flex pb-20">
-      {/* Left Sidebar */}
-      <div className="w-28 border-r bg-muted/30 overflow-y-auto">
-        <ScrollArea className="h-[calc(100vh-8rem)]">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`w-full px-3 py-3 text-xs text-left border-b hover:bg-muted/50 transition-colors ${
-                selectedCategory === category ? 'bg-background font-medium text-foreground' : 'text-muted-foreground'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </ScrollArea>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
-        <ScrollArea className="h-[calc(100vh-8rem)]">
-          <div className="p-4 space-y-6">
-            {getCategoryContent()}
-          </div>
-        </ScrollArea>
-      </div>
-    </div>
-  );
-
-  const renderDealsContent = () => (
-    <div className="p-4 pb-20">
-      <Card className="p-4 mb-4  bg-gradient-to-r from-red-50 to-red-100">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
-            <Tag className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h3 className="font-semibold text-red-700">Limited Time Offers</h3>
-            <p className="text-sm text-red-600">Hurry! These deals won't last long</p>
-          </div>
-        </div>
-      </Card>
-      
-      <div className="space-y-3">
-        {products.map((product) => (
-          <Card key={product.id} className="p-4  shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-16 h-16 bg-muted rounded-xl relative">
-                <Badge className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground px-1.5 py-0.5 text-xs">
-                  -
-                </Badge>
-              </div>
-              <div className="flex-1">
-                <h4 className="font-medium text-sm mb-1">{product.title}</h4>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-primary font-bold">{product.price}</span>
-                  <span className="text-sm text-muted-foreground line-through"></span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-xs text-amber-500">⭐</span>
-                  <span className="text-xs text-muted-foreground"></span>
-                </div>
-              </div>
-              <Button size="sm" className="rounded-full px-4">
-                Buy Now
-              </Button>
-            </div>
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
-
-  const renderProfileContent = () => (
-    <div className="p-4 pb-20">
-      <Card className="p-6 mb-6  shadow-sm">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
-            <User className="h-8 w-8 text-primary-foreground" />
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Welcome!</h3>
-            <p className="text-sm text-muted-foreground">Sign in to access your account</p>
-          </div>
-        </div>
-        
-        <div className="mt-4 space-y-2">
-          <Button 
-            className="w-full rounded-full"
-            onClick={() => setAuthView('signin')}
-          >
-            Sign In
-          </Button>
-          <Button 
-            variant="outline" 
-            className="w-full rounded-full"
-            onClick={() => setAuthView('account-type')}
-          >
-            Create Account
-          </Button>
-        </div>
-      </Card>
-
-      <div className="space-y-2">
-        {[
-          { icon: Heart, label: 'My Wishlist', count: '12 items', onClick: () => {} },
-          { icon: ShoppingCart, label: 'Order History', count: '5 orders', onClick: () => navigate('/cart') },
-          { icon: Bell, label: 'Notifications', count: '3 new', onClick: () => {} },
-          { icon: Settings, label: 'Settings', count: null, onClick: () => navigate('/theme-settings') },
-        ].map((item) => (
-          <Card key={item.label} className=" shadow-sm">
-            <Button
-             variant="ghost"
-             className="w-full justify-start p-4 h-auto"
-             onClick={item.onClick}
-            >
-              <item.icon className="h-5 w-5 mr-3 text-muted-foreground" />
-              <div className="flex-1 text-left">
-                <p className="font-medium">{item.label}</p>
-                {item.count && <p className="text-xs text-muted-foreground">{item.count}</p>}
-              </div>
-            </Button>
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
-
-   // Show auth views when needed
-  if (authView === 'signin') {
-    return (
-      <SignInView 
-        onBack={() => setAuthView('none')}
-        onSwitchToSignUp={() => setAuthView('account-type')}
-      />
-    );
-  }
-
-  if (authView === 'account-type') {
-    return (
-      <AccountTypeSelection 
-        onBack={() => setAuthView('none')}
-        onContinue={(accountType) => {
-          setSelectedAccountType(accountType);
-          setAuthView('signup');
-        }}
-      />
-    );
-  }
-
-  if (authView === 'signup' && selectedAccountType) {
-    return (
-      <CreateAccountForm 
-        accountType={selectedAccountType}
-        onBack={() => setAuthView('account-type')}
-        onSuccess={() => {
-          // Handle successful account creation
-          setAuthView('none');
-          setSelectedAccountType(null);
-          // You can show a success toast here
-        }}
-        onVendorVerification={() => {
-          // Navigate to vendor verification for vendor accounts
-          setAuthView('vendor-verification');
-        }}
-      />
-    );
-  }
-
-  if (authView === 'vendor-verification') {
-    return (
-      <VendorVerification 
-        onBack={() => setAuthView('signup')}
-        onSuccess={() => {
-          // Handle successful vendor verification
-          setAuthView('none');
-          setSelectedAccountType(null);
-          // You can show a success message or redirect to vendor dashboard
-        }}
-      />
-    );
-  }
-
-  if (selectedChatId) {
-    return <ChatView chatId={selectedChatId} onBack={handleBackToChats} />;
-  }
 
   return (
     <div className="min-h-screen bg-background relative">
-       {/* PWA Install Banner */}
+      {/* PWA Install Banner */}
       {isInstallable && !isInstalled && showInstallBanner && (
         <div className="bg-primary text-primary-foreground p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -780,12 +160,11 @@ const products = [
           </div>
         </div>
       )}
-      
-      {/* Mobile Header - Hidden when messenger tab is active */}
-      {activeTab !== 'messenger' && (
+
+      {/* Mobile Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
         <div className="flex items-center gap-3 px-4 py-3">
-          {/* <Sheet>
+          <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" className="rounded-full">
                 <Menu className="h-5 w-5" />
@@ -797,18 +176,18 @@ const products = [
                 <div className="space-y-1">
                   {categories.map((category) => (
                     <Button
-                      key={category.name}
+                      key={category}
                       variant="ghost"
-                      className="w-full justify-start gap-3 h-12 rounded-xl"
+                      className="w-full justify-start h-12 rounded-xl"
+                      onClick={() => navigate('/categories')}
                     >
-                      <span className="text-lg">{category.icon}</span>
-                      <span className="font-medium">{category.name}</span>
+                      <span className="font-medium">{category}</span>
                     </Button>
                   ))}
                 </div>
               </div>
             </SheetContent>
-          </Sheet> */}
+          </Sheet>
           
           <div className="flex-1">
             <div className="relative">
@@ -817,7 +196,7 @@ const products = [
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 rounded-full  bg-muted"
+                className="pl-10 pr-4 rounded-full bg-muted"
               />
             </div>
           </div>
@@ -826,7 +205,7 @@ const products = [
             <Button variant="ghost" size="sm" className="relative rounded-full">
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="sm" className="relative rounded-full">
+            <Button variant="ghost" size="sm" className="relative rounded-full" onClick={() => navigate('/cart')}>
               <ShoppingCart className="h-5 w-5" />
               <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
                 3
@@ -835,15 +214,164 @@ const products = [
           </div>
         </div>
       </header>
-      )}
 
       {/* Main Content */}
       <main className="min-h-screen pb-16">
-        {activeTab === 'home' && renderHomeContent()}
-        {activeTab === 'categories' && renderCategoriesContent()}
-        {activeTab === 'messenger' && <ChatListView onChatSelect={handleChatSelect} />}
-        {activeTab === 'deals' && renderDealsContent()}
-        {activeTab === 'my-nest' && renderProfileContent()}
+        <div className="pb-20">
+          {/* Hero Banner */}
+          <div className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 mx-4 mt-4 rounded-2xl p-6 text-primary-foreground shadow-lg">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold mb-2">Flash Sale</h2>
+                <p className="text-sm opacity-90 mb-4">Up to 70% off on selected items</p>
+                <Button variant="secondary" size="sm" className="rounded-full font-medium px-6">
+                  Shop Now
+                </Button>
+              </div>
+              <div className="text-6xl opacity-20">🛍️</div>
+            </div>
+          </div>
+
+          {/* Top Deals Slider */}
+          <div className="mt-6">
+            <div className="flex items-center justify-between mb-4 px-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Tag className="h-5 w-5 text-primary" />
+                Top Deals
+              </h3>
+              <Button variant="ghost" size="sm" className="text-primary">
+                <ArrowBigRight className="h-5 w-5" />
+              </Button>
+            </div>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex w-max space-x-3 px-4">
+                {topDeals.map((product) => (
+                  <Card key={product.id} className="w-35 p-1 shadow-sm flex-shrink-0">
+                    <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
+                      <Badge className="absolute top-2 left-2 bg-destructive text-destructive-foreground px-2 py-0.5 text-xs">
+                        -{product.discount}
+                      </Badge>
+                    </div>
+                    <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
+                    <div className="flex items-center gap-1 mb-1">
+                      <span className="text-primary font-bold text-sm">{product.price}</span>
+                      <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
+
+          {/* Top Ranking */}
+          <div className="mt-6">
+            <div className="flex items-center justify-between mb-4 px-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                Top Ranking
+              </h3>
+              <Button variant="ghost" size="sm" className="text-primary">
+                <ArrowBigRight className="h-5 w-5" />
+              </Button>
+            </div>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex w-max space-x-3 px-4">
+                {topRanking.map((product) => (
+                  <Card key={product.id} className="w-35 p-1 shadow-sm flex-shrink-0">
+                    <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
+                      <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold">
+                        #{product.rank}
+                      </Badge>
+                    </div>
+                    <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
+                    <div className="flex items-center gap-1 mb-1">
+                      <span className="text-primary font-bold text-sm">{product.price}</span>
+                      {product.originalPrice && (
+                        <span className="text-xs text-muted-foreground line-through">{product.originalPrice}</span>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        <Star className="h-3 w-3 text-amber-500 fill-current" />
+                        <span className="text-xs text-muted-foreground">{product.rating}</span>
+                      </div>
+                      <Button size="sm" className="h-6 px-2 text-xs rounded-full">
+                        Add
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
+
+          {/* New Arrivals */}
+          <div className="mt-6">
+            <div className="flex items-center justify-between mb-4 px-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                New Arrivals
+              </h3>
+              <Button variant="ghost" size="sm" className="text-primary">
+                <ArrowBigRight className="h-5 w-5" />
+              </Button>
+            </div>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex w-max space-x-3 px-4">
+                {newArrivals.map((product) => (
+                  <Card key={product.id} className="w-40 p-1 shadow-sm flex-shrink-0">
+                    <div className="aspect-square bg-muted rounded-xl mb-3 relative overflow-hidden">
+                      <Badge className="absolute top-2 left-2 bg-green-500 px-2 py-0.5 text-xs">
+                        NEW
+                      </Badge>
+                    </div>
+                    <h4 className="font-medium text-sm mb-2 line-clamp-2 leading-tight">{product.name}</h4>
+                    <div className="flex items-center gap-1 mb-1">
+                      <span className="text-primary font-bold text-sm">{product.price}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        <Star className="h-3 w-3 text-amber-500 fill-current" />
+                        <span className="text-xs text-muted-foreground">{product.rating}</span>
+                      </div>
+                      <Button size="sm" className="h-6 px-2 text-xs rounded-full">
+                        Add
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
+
+          {/* Featured Products */}
+          <div className="px-4 mt-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">Featured Products</h3>
+              <Button variant="ghost" size="sm" className="text-primary">
+                View All
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {products.map((product) => (
+                <div key={product.id} onClick={() => navigate(`/product/${product.slug}`)}>
+                  <ProductCard
+                    slug={product.slug}
+                    image={product.image}
+                    title={product.title}
+                    price={product.price}
+                    supplier={product.supplier}
+                    isVerified={product.isVerified}
+                    isLive={product.id === 6}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </main>
 
       {/* Bottom Navigation */}
@@ -851,21 +379,21 @@ const products = [
         <div className="flex">
           {bottomTabs.map((tab) => {
             const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
+            const isActive = tab.id === 'home';
             return (
-              <Button
-                key={tab.id}
-                variant="ghost"
-                className={`flex-1 flex-col gap-1 h-16 rounded-none ${
-                  isActive ? 'text-primary bg-primary/5' : 'text-muted-foreground'
-                }`}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                <Icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
-                <span className={`text-xs ${isActive ? 'font-medium text-primary' : ''}`}>
-                  {tab.label}
-                </span>
-              </Button>
+              <Link key={tab.id} to={tab.path} className="flex-1">
+                <Button
+                  variant="ghost"
+                  className={`w-full flex-col gap-1 h-16 rounded-none ${
+                    isActive ? 'text-primary bg-primary/5' : 'text-muted-foreground'
+                  }`}
+                >
+                  <Icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
+                  <span className={`text-xs ${isActive ? 'font-medium text-primary' : ''}`}>
+                    {tab.label}
+                  </span>
+                </Button>
+              </Link>
             );
           })}
         </div>

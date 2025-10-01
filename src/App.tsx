@@ -14,6 +14,10 @@ const MobileCart = React.lazy(() => import('@/mobile/products/Cart'));
 const MobileCheckout = React.lazy(() => import('@/mobile/products/Checkout'));
 const Dashboard = React.lazy(() => import('@/mobile/products/ProductDetail'));
 const ThemeSettings = React.lazy(() => import('@/mobile/ThemeSettings'));
+const CategoriesPage = React.lazy(() => import('@/mobile/Categories'));
+const MessengerPage = React.lazy(() => import('@/mobile/Messenger'));
+const DealsPage = React.lazy(() => import('@/mobile/Deals'));
+const MyNestPage = React.lazy(() => import('@/mobile/MyNest'));
 // const Blog = React.lazy(() => import('./views/front/blog/Blog'));
 // const BlogDetails = React.lazy(() => import('./views/front/blog/BlogDetails'));
 // const Login = React.lazy(() => import('./views/auth/Login'));
@@ -56,11 +60,17 @@ const App: React.FC = () => {
               path="/" 
               element={isMobile ? <MobileIndex /> : <Index />} 
             /> 
-            <Route path="/products/search" element={<Search />}  />
+            <Route
+              path="/products/search" 
+              element={isMobile ? <CategoriesPage/> : <Search />}  
+            />
             <Route 
               path="/product/:productSlug"
               element={isMobile ? <MobileDetail /> : <Details />} 
             />
+            <Route path="/messenger" element={<MessengerPage />} />
+            <Route path="/deals" element={<DealsPage />} />
+            <Route path="/my-nest" element={<MyNestPage />} />
             <Route path="/cart" element={<MobileCart />} />
             <Route path="/checkout" element={<MobileCheckout />} />
             <Route path="/vendor/dashboard" element={<Dashboard />} />
