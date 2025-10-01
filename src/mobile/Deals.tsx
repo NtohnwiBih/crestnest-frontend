@@ -86,8 +86,8 @@ const DealsPage = () => {
   ];
 
   const bottomTabs = [
-    { id: 'home', label: 'Home', icon: Home, path: '/home' },
-    { id: 'categories', label: 'Categories', icon: Grid, path: '/categories' },
+    { id: 'home', label: 'Home', icon: Home, path: '/' },
+    { id: 'categories', label: 'Categories', icon: Grid, path: '/products/search' },
     { id: 'messenger', label: 'Messenger', icon: Mail, path: '/messenger' },
     { id: 'deals', label: 'Deals', icon: Tag, path: '/deals' },
     { id: 'my-nest', label: 'My Nest', icon: User, path: '/my-nest' },
