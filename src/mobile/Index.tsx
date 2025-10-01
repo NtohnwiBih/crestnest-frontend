@@ -27,6 +27,7 @@ const IndexMobile = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('home');
   const [showInstallBanner, setShowInstallBanner] = useState(true);
+  
   const [authView, setAuthView] = useState<'none' | 'signin' | 'account-type' | 'signup' | 'vendor-verification'>('none');
   const [selectedAccountType, setSelectedAccountType] = useState<'buyer' | 'vendor' | null>(null);
    const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
