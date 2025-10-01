@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -97,14 +96,14 @@ const ChatListView = ({ onChatSelect }: ChatListViewProps) => {
 
       {/* Chat List */}
       <ScrollArea className="flex-1">
-        <div className="p-4 space-y-2">
+        <div className="px-1">
           {filteredChats.map((chat) => (
-            <Card
+            <div
               key={chat.id}
               className="p-4 cursor-pointer hover:bg-muted/50 transition-colors"
               onClick={() => onChatSelect(chat.id)}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 border-b pb-2">
                 <div className="relative">
                   <Avatar className="h-12 w-12">
                     <AvatarImage src={chat.avatar} />
@@ -138,7 +137,7 @@ const ChatListView = ({ onChatSelect }: ChatListViewProps) => {
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </ScrollArea>
