@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Home, Grid, Tag, User, Mail } from 'lucide-react';
+import { Home, Grid, Tag, User, Mail, Heart, ShoppingCart} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ChatView from '@/components/mobile/ChatView';
 import ChatListView from '@/components/mobile/ChatListView';
 import { Link } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
 
 const MessengerPage = () => {
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
@@ -59,6 +60,18 @@ const MessengerPage = () => {
               </Link>
             );
           })}
+          
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="sm" className="relative rounded-full">
+              <Heart className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="sm" className="relative rounded-full">
+              <ShoppingCart className="h-5 w-5" />
+              <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
+                3
+              </Badge>
+            </Button>
+          </div>
         </div>
       </div>
     </div>

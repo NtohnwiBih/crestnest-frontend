@@ -1,32 +1,31 @@
 import { useState } from 'react';
-import { Search, Menu, ShoppingCart, Heart, Home, Grid, Tag, User, Mail } from 'lucide-react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Search, ShoppingCart, Heart, Home, Grid, Tag, User, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Card } from '@/components/ui/card';
 
 const DealsPage = () => {
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const categories = [
-    'For you',
-    'Featured',
-    'Deals',
-    'Home & Garden',
-    'Sports & Entertainment',
-    'Jewelry, Eyewear & Watches',
-    'Gifts & Crafts',
-    'Tools & Hardware',
-    'Apparel & Accessories',
-    'Consumer Electronics',
-    'Beauty',
-    'Shoes & Accessories',
-    'Luggage, Bags & Cases',
-    'Packaging & Printing',
-  ];
+//   const categories = [
+//     'For you',
+//     'Featured',
+//     'Deals',
+//     'Home & Garden',
+//     'Sports & Entertainment',
+//     'Jewelry, Eyewear & Watches',
+//     'Gifts & Crafts',
+//     'Tools & Hardware',
+//     'Apparel & Accessories',
+//     'Consumer Electronics',
+//     'Beauty',
+//     'Shoes & Accessories',
+//     'Luggage, Bags & Cases',
+//     'Packaging & Printing',
+//   ];
 
   const products = [
     {
@@ -96,9 +95,9 @@ const DealsPage = () => {
   return (
     <div className="min-h-screen bg-background relative">
       {/* Mobile Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
         <div className="flex items-center gap-3 px-4 py-3">
-          <Sheet>
+          {/* <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" className="rounded-full">
                 <Menu className="h-5 w-5" />
@@ -110,18 +109,18 @@ const DealsPage = () => {
                 <div className="space-y-1">
                   {categories.map((category) => (
                     <Button
-                      key={category}
+                      key={category.name}
                       variant="ghost"
-                      className="w-full justify-start h-12 rounded-xl"
-                      onClick={() => navigate('/categories')}
+                      className="w-full justify-start gap-3 h-12 rounded-xl"
                     >
-                      <span className="font-medium">{category}</span>
+                      <span className="text-lg">{category.icon}</span>
+                      <span className="font-medium">{category.name}</span>
                     </Button>
                   ))}
                 </div>
               </div>
             </SheetContent>
-          </Sheet>
+          </Sheet> */}
           
           <div className="flex-1">
             <div className="relative">
@@ -130,7 +129,7 @@ const DealsPage = () => {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 rounded-full bg-muted"
+                className="pl-10 pr-4 rounded-full  bg-muted"
               />
             </div>
           </div>
@@ -139,7 +138,7 @@ const DealsPage = () => {
             <Button variant="ghost" size="sm" className="relative rounded-full">
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="sm" className="relative rounded-full" onClick={() => navigate('/cart')}>
+            <Button variant="ghost" size="sm" className="relative rounded-full">
               <ShoppingCart className="h-5 w-5" />
               <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
                 3
