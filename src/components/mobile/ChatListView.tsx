@@ -101,7 +101,7 @@ const ChatListView = ({ onChatSelect }: ChatListViewProps) => {
           {filteredChats.map((chat) => (
             <Card
               key={chat.id}
-              className="p-4 cursor-pointer hover:bg-muted/50 transition-colors shadow-sm"
+              className="p-4 cursor-pointer hover:bg-muted/50 transition-colors"
               onClick={() => onChatSelect(chat.id)}
             >
               <div className="flex items-center gap-3">

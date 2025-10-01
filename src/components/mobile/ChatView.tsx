@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Send, MoreVertical, Phone, Video, Plus, X, Smile, Camera, FileText, Mic, Heart, CreditCard, Languages, MapPin } from 'lucide-react';
+import { ArrowLeft, Send, MoreVertical, Phone, Video, Plus, X, Smile, Camera, FileText, Mic, Heart, CreditCard, Languages, MapPin, Keyboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import EmojiPicker, { type EmojiClickData } from 'emoji-picker-react';
 
 interface Message {
@@ -42,6 +41,7 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
   const [isAttachmentMenuOpen, setIsAttachmentMenuOpen] = useState(false);
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Mock data - in real app this would come from props or API
   const chat: Chat = {
@@ -164,6 +164,24 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
     // Here you would implement the actual functionality for each option
   };
 
+  const handlePlusClick = () => {
+    setIsAttachmentMenuOpen(!isAttachmentMenuOpen);
+    setIsEmojiPickerOpen(false);
+    inputRef.current?.blur();
+  };
+
+  const handleEmojiButtonClick = () => {
+    setIsEmojiPickerOpen(!isEmojiPickerOpen);
+    setIsAttachmentMenuOpen(false);
+    inputRef.current?.blur();
+  };
+
+  const handleReturnToKeyboard = () => {
+    setIsEmojiPickerOpen(false);
+    setIsAttachmentMenuOpen(false);
+    inputRef.current?.focus();
+  };
+
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Chat Header */}
@@ -229,6 +247,51 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
         </div>
       </ScrollArea>
 
+      {/* Message Input */}
+      <div className="flex items-center gap-2 px-4 py-3 border-t bg-background/95 backdrop-blur-sm">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="rounded-full"
+          onClick={handlePlusClick}
+        >
+          {isAttachmentMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Plus className="h-5 w-5" />
+          )}
+        </Button>
+        
+        <div className="flex-1 relative">
+          <Input
+            ref={inputRef}
+            placeholder="Type a message..."
+            value={messageText}
+            onChange={(e) => setMessageText(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+            className="rounded-full pr-12"
+          />
+        </div>
+        
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="rounded-full"
+          onClick={handleEmojiButtonClick}
+        >
+          <Smile className="h-5 w-5" />
+        </Button>
+        
+        <Button
+          size="sm"
+          onClick={handleSendMessage}
+          disabled={!messageText.trim()}
+          className="rounded-full"
+        >
+          <Send className="h-4 w-4" />
+        </Button>
+      </div>
+
       {/* Attachment Options Grid */}
       <div
         className={`border-t bg-background/95 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden ${
@@ -253,54 +316,31 @@ const ChatView = ({ chatId, onBack }: ChatViewProps) => {
         </div>
       </div>
 
-      {/* Message Input */}
-      <div className="flex items-center gap-2 px-4 py-3 border-t bg-background/95 backdrop-blur-sm">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="rounded-full"
-          onClick={() => setIsAttachmentMenuOpen(!isAttachmentMenuOpen)}
-        >
-          {isAttachmentMenuOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Plus className="h-5 w-5" />
-          )}
-        </Button>
-        
-        <div className="flex-1 relative">
-          <Input
-            placeholder="Type a message..."
-            value={messageText}
-            onChange={(e) => setMessageText(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-            className="rounded-full pr-12"
+      {/* Emoji Picker */}
+      <div
+        className={`border-t bg-background transition-all duration-300 ease-in-out overflow-hidden ${
+          isEmojiPickerOpen ? 'max-h-[450px]' : 'max-h-0'
+        }`}
+      >
+        <div className="flex items-center justify-between px-4 py-2 border-b">
+          <h3 className="text-sm font-medium">Emojis</h3>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleReturnToKeyboard}
+            className="gap-2"
+          >
+            <Keyboard className="h-4 w-4" />
+            <span className="text-xs">abc</span>
+          </Button>
+        </div>
+        <div className="flex justify-center">
+          <EmojiPicker
+            onEmojiClick={handleEmojiClick}
+            width="100%"
+            height={400}
           />
         </div>
-        
-        <Popover open={isEmojiPickerOpen} onOpenChange={setIsEmojiPickerOpen}>
-          <PopoverTrigger asChild>
-            <Button variant="ghost" size="sm" className="rounded-full">
-              <Smile className="h-5 w-5" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-full p-0 border-0" align="end">
-            <EmojiPicker
-              onEmojiClick={handleEmojiClick}
-              width={320}
-              height={400}
-            />
-          </PopoverContent>
-        </Popover>
-        
-        <Button
-          size="sm"
-          onClick={handleSendMessage}
-          disabled={!messageText.trim()}
-          className="rounded-full"
-        >
-          <Send className="h-4 w-4" />
-        </Button>
       </div>
     </div>
   );
